@@ -1,5 +1,5 @@
 import React from "react";
-import TaskList from "./components/TaskList";
+import League from "./components/League";
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -13,7 +13,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <Route exact path="/" component={TaskList} />
+        <Route exact path="/" component={League} />
       </div>
     </Router>
   );
