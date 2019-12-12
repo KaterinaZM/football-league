@@ -1,22 +1,42 @@
 const createError = require("http-errors");
 const express = require("express");
+const session = require("express-session");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const methodOverride = require("method-override");
+const MongoStore = require("connect-mongo")(session);
 
 const indexRouter = require("./routes/index");
+const gamestartRouter = require("./routes/gamestart");
 
 const app = express();
 
 // Подключаем mongoose.
 const mongoose = require("mongoose");
-
-/*задать имя базы монго --->
-mongoose.connect(`mongodb://localhost:27017/${DATABASENAME}`, {
-  useNewUrlParser: true
+require("dotenv").config();
+// задать имя базы монго
+// mongoose.connect(process.env.ATLAS_URL, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// });
+mongoose.Promise = global.Promise;
+const db = mongoose.connection;
+mongoose.connect(`mongodb://localhost:27017/football-league`, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
-*/
+app.use(
+  session({
+    store: new MongoStore({
+      mongooseConnection: db
+    }),
+    key: "user_sid",
+    secret: "oh klahoma",
+    resave: false,
+    saveUninitialized: false
+  })
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -42,6 +62,7 @@ app.use(
 );
 
 app.use("/", indexRouter);
+app.use("/", gamestartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
