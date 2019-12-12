@@ -5,7 +5,11 @@ const initialState = {
     name: 'Denis',
     email: 'Denis@sutulaya.ru',
     about: 'Im very good player, I can shoot the ball',
-    role: 'back'
+    role: 'back',
+    stats: {
+      wins: 2,
+      lose: 109
+    }
   }
 };
 
