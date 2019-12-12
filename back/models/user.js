@@ -7,4 +7,7 @@ const userSchema = new mongoose.Schema({
   teams: Array,
 });
 
+userSchema.statics.getUserByName = async function (username) {
+  return await this.findOne({ name: username });
+}
 module.exports = mongoose.model('User', userSchema);
