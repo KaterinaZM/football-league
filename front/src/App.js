@@ -1,5 +1,6 @@
 import React from "react";
 import League from "./components/League";
+import Login from "./components/Login"
 import "./App.css";
 import {
   BrowserRouter as Router,
@@ -14,6 +15,7 @@ function App() {
     <Router>
       <div className="App">
         <Route exact path="/" component={League} />
+        <Route exact path="/login" component={Login} />
       </div>
     </Router>
   );

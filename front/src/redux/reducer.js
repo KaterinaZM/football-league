@@ -1,8 +1,16 @@
-import { ADD_SIZE, ADD_KITTEN } from "./types";
+import { LOGIN_USER } from "./types";
 const initialState = {
-  size: [],
-  img: ""
+  userLogged: false
 };
-export default function(state = initialState, action) {
-  return state;
+export default function (state = initialState, action) {
+  switch (action.type) {
+    case LOGIN_USER: {
+      return {
+        ...state,
+        userLogged: action.userLogged
+      }
+    }
+    default:
+      return state;
+  }
 }
