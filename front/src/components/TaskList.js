@@ -1,7 +1,4 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import { addTodoAC, clearAllAC, deleteTodoAC } from "../redux/actions";
+import React, { Component } from 'react';
 
 export default class TaskList extends Component {
   render() {
