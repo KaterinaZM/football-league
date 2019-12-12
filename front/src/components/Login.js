@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import bcrypt from 'bcrypt';
 import { FetchToLoginAC } from '../redux/actions/actions';
 
-// const saltRounds = 10;
 class Login extends Component {
     state = {
       username: '',
@@ -22,10 +20,6 @@ class Login extends Component {
       e.preventDefault();
       const userName = this.state.username;
       const userPassword = this.state.password;
-      //   await bcrypt.hash(userPassword, saltRounds, (err, hash) => {
-      //     userPassword = hash;
-      //     return userPassword;
-      //   });
       await this.props.fetchToLogin(userName, userPassword);
     }
 
