@@ -8,6 +8,6 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.statics.getUserByName = async function (username) {
-  return await this.findOne({ name: username });
+  return await this.findOne({ username });
 }
 module.exports = mongoose.model('User', userSchema);
