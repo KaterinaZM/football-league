@@ -1,4 +1,6 @@
 const Teams = require("../models/team");
+const faker = require("faker");
+const randomName = faker.fake("{{random.word}}");
 
 function randomInt(min, max) {
   return Math.floor(min + Math.random() * (max - min));
@@ -21,22 +23,22 @@ function randomPair(array) {
   }
 }
 
-function splitToTeams(array) {
-  let i = 1;
-  if (array.length > 1) {
-    let pair = randomPair(array);
-    let team = new Teams({
-      title: i,
+function splitToTeams(users, teams) {
+  let newArr = [...users];
+  if (newArr.length > 1) {
+    let pair = randomPair(newArr);
+    let team = {
+      title: randomName,
       participants: [...pair]
-    }).save();
-    i++;
-    splitToTeams(array);
-  } else if (array.length === 1) {
-    console.log("array length is 1");
-    let team = new Teams({
-      title: i,
-      participants: [...array]
-    }).save();
+    };
+    teams.push(team);
+    splitToTeams(newArr);
+  } else if (newArr.length === 1) {
+    console.log("users length is 1");
+    let team = {
+      title: randomName,
+      participants: [...users]
+    };
   }
 }
 
