@@ -7,8 +7,10 @@ const Players = require("../models/player");
 const splitToTeams = require("../scripts/randomizers");
 
 router.get("api/gamestart", async (req, res) => {
-  let playerPool = await Players.find();
-  splitToTeams(playerPool);
+  let foundLeague = await League.findById(req.body.id);
+  let playerPool = foundLeague.users;
+  let teamsPool = foundLeague.teams;
+  splitToTeams(playerPool, teamsPool);
   console.log("success!");
   let teams = await Teams.find();
 
