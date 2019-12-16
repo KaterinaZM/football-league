@@ -7,6 +7,10 @@ export default function getUserDetails(id) {
     id
   };
 }
+export const loginUserAC = (userLoggedIn) => ({
+  type: LOGIN_USER,
+  userLogged: userLoggedIn
+});
 
 export const FetchToLoginAC = (username, password) => async (dispatch) => {
   try {
@@ -27,7 +31,7 @@ export const FetchToLoginAC = (username, password) => async (dispatch) => {
     console.log(userLoggedIn);
 
   } catch (err) {
-    alert(err);
+    // alert(err);
   }
 };
 
