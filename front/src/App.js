@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Profile from './components/Profile/Profile';
-import League from './components/League';
+import CreateLeague from './components/CreateLeague';
+import ViewLeague from './components/ViewLeague';
+// import League from './components/CreateLeague'; 
 //import Login from './components/SignInUp/Login';
 import SignInUp from './components/SignInUp/SignInUp'
 import Login from './components/Login';
@@ -19,9 +21,11 @@ export default class App extends Component {
             <Link to='/profile'>Profile</Link>
           </nav>
 
-          <Route exact path="/" component={League} />
+          {/* <Route exact path="/" component={League} /> */}
           <Route exact path="/signInUp" component={SignInUp} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/profile/calendar" component={CreateLeague} />
+          <Route exact path="/leagues/:id" component={ViewLeague} />
 
         </div>
       </Router>
