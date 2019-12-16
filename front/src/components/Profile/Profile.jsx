@@ -1,42 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Event from '../Event/Event';
-import Stats from '../Stats/Stats';
+// import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+// import Event from '../Event/Event';
+// import Stats from '../Stats/Stats';
 import getUserDetails from '../../redux/actions/actions';
-import userImg from './user.jpg';
 import './Profile.css';
+import LeftSide from './LeftSide/LeftSide';
+import RightSide from './RightSide/RightSide';
+
 
 class Profile extends Component {
   render() {
     return (
       <div className="profile">
 
-        <div className="profile__user">
+        <LeftSide />
 
-          <img className="profile__user-avatar" src={ userImg } alt="userAvatar"/>
+        <RightSide />
 
-          <div className="profile__user-details">
+
+                  {/* <div className="profile__user-details">
             <h2>User details:</h2>
-            <span>Name: { this.props.userDetails.name }</span>
+            <span>Hi, { this.props.userDetails.name }</span>
             <span>Email: { this.props.userDetails.email }</span>
             <span>About: { this.props.userDetails.about }</span>
             <span>Role: { this.props.userDetails.role }</span>
-          </div>
+          </div> */}
 
-        </div>
-
-        <Router>
-          <div className="profile__user-menu">
-            <nav>
-              <Link to="/profile">Ближайшие мероприятия</Link>
-              <Link to="/profile/stats">Статистика</Link>
-            </nav>
-
-            <Route exact path="/profile" component={ Event }/>
-            <Route exact path="/profile/stats" component={ Stats }/>
-          </div>
-        </Router>
       </div>
     );
   }
