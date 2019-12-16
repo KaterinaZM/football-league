@@ -23,7 +23,7 @@ require("dotenv").config();
 // });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
-mongoose.connect(`mongodb://localhost:27017/football-league`, {
+mongoose.connect(process.env.ATLAS_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
