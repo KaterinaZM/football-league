@@ -1,0 +1,36 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 50%;
+}
+.login__user-name-label,
+.login__password-label {
+  color: #dedcdc;
+  text-transform: uppercase;
+  padding-left: 5%;
+  margin-bottom: 1%;
+}
+.login__user-name-input,
+.login__password-input {
+  color: #dedcdc;
+  padding: 2% 5%;
+  background: none;
+  border: 2px solid #dedcdc;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  outline: none;
+}
+.login__user-name-input::placeholder,
+.login__password-input::placeholder {
+  color: #dedcdc;
+}
+.login__button {
+  color: #dedcdc;
+  padding: 2% 5%;
+  border: none;
+  background: #2d9057;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  outline: none;
+}
