@@ -35,11 +35,6 @@ export const FetchToLoginAC = (username, password) => async (dispatch) => {
   }
 };
 
-export const loginUserAC = (userLoggedIn) => ({
-  type: LOGIN_USER,
-  userLogged: userLoggedIn
-});
-
 export const FetchToSignUpAC = (username, email, password) => async (dispatch) => {
   try {
     const response = await fetch('/api/signup', {

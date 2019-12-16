@@ -13,11 +13,11 @@ export default class App extends Component {
     return (
       <Router>
         <div className="App">
-          {/* <nav className="main-nav">
+          <nav className="main-nav">
             <Link to='/'>Home</Link>
             <Link to='/signInUp'>Login/Sign Up</Link>
             <Link to='/profile'>Profile</Link>
-          </nav> */}
+          </nav>
 
           <Route exact path="/" component={League} />
           <Route exact path="/signInUp" component={SignInUp} />
