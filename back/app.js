@@ -11,6 +11,7 @@ const indexRouter = require("./routes/index");
 const gamestartRouter = require("./routes/gamestart");
 const loginRouter = require("./routes/login");
 const signUpRouter = require("./routes/signup");
+const leagueRouter = require("./routes/league");
 const app = express();
 
 // Подключаем mongoose.
@@ -61,11 +62,18 @@ app.use(
     }
   })
 );
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header('Access-Control-Allow-Credentials', 'true')
+  next();
+})
 app.use("/", indexRouter);
 app.use("/", gamestartRouter);
-app.use("/api/login", loginRouter)
-app.use("/api/signup", signUpRouter)
+app.use("/api", leagueRouter);
+app.use("/api/login", loginRouter);
+app.use("/api/signup", signUpRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
