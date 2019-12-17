@@ -12,6 +12,7 @@ const gamestartRouter = require("./routes/gamestart");
 const loginRouter = require("./routes/login");
 const signUpRouter = require("./routes/signup");
 const leagueRouter = require("./routes/league");
+const profileinfoRouter = require("./routes/profileinfo");
 const app = express();
 
 // Подключаем mongoose.
@@ -25,7 +26,6 @@ require("dotenv").config();
 // });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
-mongoose.connect(config.DB, { useMongoClient: true });
 mongoose.connect(process.env.ATLAS_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -79,6 +79,7 @@ app.use("/", gamestartRouter);
 app.use("/api", leagueRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/signup", signUpRouter);
+app.use("/api/profileinfo", profileinfoRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

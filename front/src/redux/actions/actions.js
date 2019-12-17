@@ -1,5 +1,4 @@
-import { LOGIN_USER, GET_USER_DETAILS } from './actionTypes';
-
+import { LOGIN_USER, GET_USER_DETAILS } from "./actionTypes";
 
 export default function getUserDetails(id) {
   return {
@@ -7,19 +6,20 @@ export default function getUserDetails(id) {
     id
   };
 }
-export const loginUserAC = (userLoggedIn) => ({
+export const loginUserAC = (userLoggedIn, profileInfo) => ({
   type: LOGIN_USER,
   userLogged: userLoggedIn,
+  profileInfo: profileInfo
 });
 
-export const FetchToLoginAC = (username, password) => async (dispatch) => {
+export const FetchToLoginAC = (username, password) => async dispatch => {
   try {
-    console.log('Fetch to Login');
+    console.log("Fetch to Login");
 
-    const userLoggedData = await fetch('/api/login', {
-      method: 'POST',
+    const userLoggedData = await fetch("/api/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username,
@@ -27,20 +27,33 @@ export const FetchToLoginAC = (username, password) => async (dispatch) => {
       })
     });
     const userLoggedIn = await userLoggedData.json();
-    dispatch(loginUserAC(userLoggedIn));
+    // Максим: ниже добавил доп. фетч для запроса инфы по профилю
+    const getProfile = await fetch("api/profileinfo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ userID: userLoggedIn })
+    });
+    const getProfileRes = await getProfile.json();
     console.log(userLoggedIn);
 
+    dispatch(loginUserAC(userLoggedIn, getProfileRes));
   } catch (err) {
     // alert(err);
   }
 };
 
-export const FetchToSignUpAC = (username, email, password) => async (dispatch) => {
+export const FetchToSignUpAC = (
+  username,
+  email,
+  password
+) => async dispatch => {
   try {
-    const response = await fetch('/api/signup', {
-      method: 'POST',
+    const response = await fetch("/api/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username,
@@ -56,6 +69,6 @@ export const FetchToSignUpAC = (username, email, password) => async (dispatch) =
       await dispatch(FetchToLoginAC(username, password));
     }
   } catch (err) {
-    alert(err)
+    alert(err);
   }
-}
+};

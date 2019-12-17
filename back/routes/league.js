@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const Users = require("../models/user");
+const League = require("../models/league");
 const splitToTeams = require("../scripts/randomizers");
 // const sgMail = require('@sendgrid/mail');
 
-router.get('/leagues', async (req, res) => {
-  const leagues = await League.find()
+router.get("/leagues", async (req, res) => {
+  const leagues = await League.find();
   res.send(JSON.stringify(leagues));
-})
+});
 
 router.post("/newleague", async (req, res) => {
   // sgMail.setApiKey(process.env.SENDGRID_API_KEY); SENDS EMAIL NOTIFICATION
@@ -17,10 +18,11 @@ router.post("/newleague", async (req, res) => {
   //   subject: 'New League was created. Ready to play?',
   //   text: 'You created a new league, lets wait for others to register for it.',
   // };
-  console.log(msg);
+  // console.log(msg);
+
   let newLeague = await new League({
     leagueName: req.body.leagueName,
-    creator: req.body.userID,
+    creator: req.body.creator,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     users: [],
@@ -28,7 +30,13 @@ router.post("/newleague", async (req, res) => {
     events: [],
     leagueStats: []
   }).save();
-  console.log(newLeague._id);
+
+  let creatorUser = await Users.findById(req.body.creator);
+  creatorUser.leagues.push(newLeague);
+  await creatorUser.save();
+  console.log(creatorUser.leagues);
+
+  // console.log(newLeague._id);
 
   res.send(JSON.stringify(newLeague._id));
   // sgMail.send(msg);
@@ -36,10 +44,10 @@ router.post("/newleague", async (req, res) => {
 
 router.post("/leagues/:id", async (req, res) => {
   const id = req.body.id;
-  const league = await League.findById({ _id: id })
+  const league = await League.findById({ _id: id });
   const userPool = league.users;
   res.send(JSON.stringify(userPool));
-})
+});
 
 router.post("/newplayer", async (req, res) => {
   let leagueToJoin = await League.findById(req.body.leagueID);
@@ -49,4 +57,3 @@ router.post("/newplayer", async (req, res) => {
 });
 
 module.exports = router;
-
