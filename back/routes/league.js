@@ -15,11 +15,15 @@ router.post("/newleague", async (req, res) => {
 
   let newLeague = await new League({
     leagueName: req.body.leagueName,
+    creator: req.body.userID,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     users: [],
-    teams: []
+    teams: [],
+    events: [],
+    leagueStats: []
   }).save();
+  console.log(newLeague._id);
 
   res.send(JSON.stringify(newLeague._id));
 });
@@ -45,3 +49,4 @@ router.post("/newplayer", async (req, res) => {
 });
 
 module.exports = router;
+
