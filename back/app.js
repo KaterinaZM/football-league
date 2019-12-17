@@ -25,7 +25,6 @@ require("dotenv").config();
 // });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
-mongoose.connect(config.DB, { useMongoClient: true });
 mongoose.connect(process.env.ATLAS_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
