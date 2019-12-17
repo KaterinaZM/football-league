@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 
 export default class CreateLeague extends Component {
   onSubmit = async (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     const newLeague = {
       leagueName: event.target.leagueName.value,
       startDate: event.target.startDate.value,
-      endDate: event.target.endDate.value,
-    }
+      endDate: event.target.endDate.value
+    };
 
     const response = await fetch('/api/newleague', {
       method: 'POST',
       headers: {
-        'content-type': 'application/json',
+        'content-type': 'application/json'
       },
-      body: JSON.stringify(newLeague),
-    })
+      body: JSON.stringify(newLeague)
+    });
     const result = await response.json();
     return this.props.history.push(`/leagues/${result}`);
   };
@@ -34,6 +34,6 @@ export default class CreateLeague extends Component {
       <label>End date: </label>
       <input name='endDate' type="date" />
       <button>Create</button>
-    </form>
+    </form>;
   }
 }
