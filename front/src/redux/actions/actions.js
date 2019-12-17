@@ -6,9 +6,10 @@ export default function getUserDetails(id) {
     id
   };
 }
-export const loginUserAC = userLoggedIn => ({
+export const loginUserAC = (userLoggedIn, profileInfo) => ({
   type: LOGIN_USER,
-  userLogged: userLoggedIn
+  userLogged: userLoggedIn,
+  profileInfo: profileInfo
 });
 
 export const FetchToLoginAC = (username, password) => async dispatch => {
@@ -26,10 +27,18 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
       })
     });
     const userLoggedIn = await userLoggedData.json();
+    // Максим: ниже добавил доп. фетч для запроса инфы по профилю
+    const getProfile = await fetch("api/profileinfo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ userID: userLoggedIn })
+    });
+    const getProfileRes = await getProfile.json();
     console.log(userLoggedIn);
 
-    dispatch(loginUserAC(userLoggedIn));
-    console.log(userLoggedIn);
+    dispatch(loginUserAC(userLoggedIn, getProfileRes));
   } catch (err) {
     // alert(err);
   }

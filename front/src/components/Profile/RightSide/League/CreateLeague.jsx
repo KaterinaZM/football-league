@@ -1,22 +1,24 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./League.css";
 import { timingSafeEqual } from "crypto";
 
-export default class CreateLeague extends Component {
-  state = {
-    leagues: []
-  };
+class CreateLeague extends Component {
+  // state = {
+  //   leagues: []
+  // };
 
-  async componentDidMount() {
-    const response = await fetch(`/api/leagues`);
-    const data = await response.json();
-    this.setState({ leagues: data });
-  }
+  // async componentDidMount() {
+  //   const response = await fetch(`/api/leagues`);
+  //   const data = await response.json();
+  //   this.setState({ leagues: data });
+  // }
 
   onSubmit = async event => {
     event.preventDefault();
 
     const newLeague = {
+      creator: this.props.id,
       leagueName: event.target.leagueName.value,
       startDate: event.target.startDate.value,
       endDate: event.target.endDate.value
@@ -34,9 +36,11 @@ export default class CreateLeague extends Component {
   };
 
   render() {
+    console.log(this.props);
+
     return (
       <>
-        <label className="createLeague__label">Leagues</label>
+        {/* <label className="createLeague__label">Leagues</label>
         <ul className="createLeague" style={{ color: "white" }}>
           {this.state.leagues.map(element => (
             <li style={{ listStyleType: "none" }}>
@@ -45,7 +49,7 @@ export default class CreateLeague extends Component {
               <button className="createLeague__button">Join</button>{" "}
             </li>
           ))}{" "}
-        </ul>
+        </ul> */}
 
         <form
           className="createLeague"
@@ -83,3 +87,11 @@ export default class CreateLeague extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    id: state.login.userLogged
+  };
+}
+
+export default connect(mapStateToProps)(CreateLeague);

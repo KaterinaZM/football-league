@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import defaultUserImage from './defaultUserImage.jpg';
-import './User.css';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import defaultUserImage from "./defaultUserImage.jpg";
+import "./User.css";
 
 class User extends Component {
   render() {
     return (
       <div className="user">
-        <img className="user__avatar" src={ defaultUserImage } alt="userAvatar"/>
-        <span className="user__name">Hi, { this.props.userDetails.name }</span>
+        <img className="user__avatar" src={defaultUserImage} alt="userAvatar" />
+        <span className="user__name">Hi, {this.props.user}</span>
       </div>
     );
   }
@@ -16,7 +16,7 @@ class User extends Component {
 
 function mapStateToProps(state) {
   return {
-    userDetails: state.profile.user
+    user: state.login.profileInfo.username
   };
 }
 
