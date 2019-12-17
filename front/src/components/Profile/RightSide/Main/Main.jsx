@@ -14,9 +14,9 @@ class Main extends Component {
         <div className="main__events">
           <span className="main__events-title">Next Events</span>
 
-          <div className="main__events-body">
-
-          </div>
+          <ul className="main__events-body">
+            { this.props.events.map(event => <li className="main__events-item">{event.name}: {event.date}</li>)}
+          </ul>
         </div>
 
         <div className="main__small-box">
@@ -52,7 +52,8 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    userDetails: state.profile.user
+    userDetails: state.profile.user,
+    events: state.profile.events
   };
 }
 

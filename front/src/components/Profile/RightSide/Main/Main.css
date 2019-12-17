@@ -52,10 +52,15 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 80%;
   color: #dedcdc;
   background-color: #345a42;
+  list-style-type: none;
+  padding-left: 5%;
+}
+.main__events-item {
+  padding-bottom: 2%;
 }
 .main__small-box {
   display: flex;
