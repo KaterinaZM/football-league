@@ -1,15 +1,17 @@
-import { LOGIN_USER, SIGNUP_USER } from '../actions/actionTypes';
+import { LOGIN_USER, SIGNUP_USER } from "../actions/actionTypes";
 
 const initialState = {
-  userLogged: ''
+  userLogged: "",
+  profileInfo: ""
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER: {
       return {
         ...state,
-        userLogged: action.userLogged
+        userLogged: action.userLogged,
+        profileInfo: action.profileInfo
       };
     }
     case SIGNUP_USER: {
