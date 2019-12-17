@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Profile from './components/Profile/Profile';
 import SignInUp from './components/SignInUp/SignInUp';
 import { connect } from 'react-redux';
@@ -20,9 +20,13 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Route exact path="/" component={SignInUp} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/profile/calendar" component={Profile} />
+          <Switch>
+
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/profile/calendar" component={Profile} />
+            <Route path='/' component={SignInUp} />
+          </Switch>
+
         </div>
       </Router>
     );
