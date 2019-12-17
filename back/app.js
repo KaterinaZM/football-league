@@ -17,6 +17,7 @@ const app = express();
 // Подключаем mongoose.
 const mongoose = require("mongoose");
 require("dotenv").config();
+
 // задать имя базы монго
 // mongoose.connect(process.env.ATLAS_URL, {
 //   useNewUrlParser: true,
@@ -24,6 +25,7 @@ require("dotenv").config();
 // });
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
+mongoose.connect(config.DB, { useMongoClient: true });
 mongoose.connect(process.env.ATLAS_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -53,7 +55,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Allows you to use PUT, DELETE with forms.
 app.use(
-  methodOverride(function (req, res) {
+  methodOverride(function(req, res) {
     if (req.body && typeof req.body === "object" && "_method" in req.body) {
       // look in urlencoded POST bodies and delete it
       const method = req.body._method;
@@ -64,11 +66,14 @@ app.use(
 );
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header('Access-Control-Allow-Credentials', 'true')
+  res.header("Access-Control-Allow-Credentials", "true");
   next();
-})
+});
 app.use("/", indexRouter);
 app.use("/", gamestartRouter);
 app.use("/api", leagueRouter);
@@ -76,12 +81,12 @@ app.use("/api/login", loginRouter);
 app.use("/api/signup", signUpRouter);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
