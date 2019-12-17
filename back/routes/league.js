@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const League = require("../models/league");
-const Teams = require("../models/team");
 const Users = require("../models/user");
 const splitToTeams = require("../scripts/randomizers");
 // const sgMail = require('@sendgrid/mail');

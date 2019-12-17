@@ -9,7 +9,7 @@ export default function getUserDetails(id) {
 }
 export const loginUserAC = (userLoggedIn) => ({
   type: LOGIN_USER,
-  userLogged: userLoggedIn
+  userLogged: userLoggedIn,
 });
 
 export const FetchToLoginAC = (username, password) => async (dispatch) => {
