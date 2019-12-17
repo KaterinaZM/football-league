@@ -3,8 +3,8 @@ const router = express.Router();
 const League = require("../models/league");
 const Teams = require("../models/team");
 const Users = require("../models/user");
-const Players = require("../models/player");
 const splitToTeams = require("../scripts/randomizers");
+// const sgMail = require('@sendgrid/mail');
 
 router.get('/leagues', async (req, res) => {
   const leagues = await League.find()
@@ -12,7 +12,14 @@ router.get('/leagues', async (req, res) => {
 })
 
 router.post("/newleague", async (req, res) => {
-
+  // sgMail.setApiKey(process.env.SENDGRID_API_KEY); SENDS EMAIL NOTIFICATION
+  // const msg = {
+  //   to: 'katerina.sobetskaia@gmail.com',
+  //   from: 'katerina.zabrovskaya@gmail.com',
+  //   subject: 'New League was created. Ready to play?',
+  //   text: 'You created a new league, lets wait for others to register for it.',
+  // };
+  console.log(msg);
   let newLeague = await new League({
     leagueName: req.body.leagueName,
     creator: req.body.userID,
@@ -26,13 +33,8 @@ router.post("/newleague", async (req, res) => {
   console.log(newLeague._id);
 
   res.send(JSON.stringify(newLeague._id));
+  // sgMail.send(msg);
 });
-// router.post('/', async (req, res) => {
-//   const startDate = Date.now();
-//   const endDate = new Date(Date.now() + 12096e5);
-//   await League.create({ startDate: startDate, endDate: endDate, users: [], teams: [] });
-//   res.end();
-// })
 
 router.post("/leagues/:id", async (req, res) => {
   const id = req.body.id;
