@@ -9,11 +9,15 @@ const splitToTeams = require("../scripts/randomizers");
 router.post("api/newleague", async (req, res) => {
   let newLeague = new Leagues({
     leagueName: req.body.leagueName,
+    creator: req.body.userID,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     users: [],
-    teams: []
+    teams: [],
+    events: [],
+    leagueStats: []
   }).save();
+  console.log(newLeague._id);
 
   res.send(JSON.stringify(newLeague._id));
 });
@@ -24,5 +28,3 @@ router.post("api/newplayer", async (req, res) => {
   leagueToJoin.users.push(reqUser._id).save();
   res.send(JSON.stringify(newLeague.users));
 });
-
-
