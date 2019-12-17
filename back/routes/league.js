@@ -6,6 +6,10 @@ const Users = require("../models/user");
 const Players = require("../models/player");
 const splitToTeams = require("../scripts/randomizers");
 
+router.get('/leagues', async (req, res) => {
+  const leagues = await League.find()
+  res.send(JSON.stringify(leagues));
+})
 
 router.post("/newleague", async (req, res) => {
 
@@ -19,6 +23,12 @@ router.post("/newleague", async (req, res) => {
 
   res.send(JSON.stringify(newLeague._id));
 });
+// router.post('/', async (req, res) => {
+//   const startDate = Date.now();
+//   const endDate = new Date(Date.now() + 12096e5);
+//   await League.create({ startDate: startDate, endDate: endDate, users: [], teams: [] });
+//   res.end();
+// })
 
 router.post("/leagues/:id", async (req, res) => {
   const id = req.body.id;
@@ -27,7 +37,7 @@ router.post("/leagues/:id", async (req, res) => {
   res.send(JSON.stringify(userPool));
 })
 
-router.post("api/newplayer", async (req, res) => {
+router.post("/newplayer", async (req, res) => {
   let leagueToJoin = await League.findById(req.body.leagueID);
   let reqUser = await Users.findById(req.body.userID);
   leagueToJoin.users.push(reqUser._id).save();
