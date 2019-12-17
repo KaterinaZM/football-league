@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Main from './Main/Main';
-import CreateLeague from '../../CreateLeague';
-import ViewLeague from '../../ViewLeague';
+import CreateLeague from './League/CreateLeague';
+import ViewLeague from './League/ViewLeague';
 import './RightSide.css';
 
 
