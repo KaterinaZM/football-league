@@ -10,13 +10,18 @@ router.post('/', async (req, res) => {
         if (result) {
             req.session.logged = true;
             req.session.name = currentUser._id;
-            //req.session.name = req.body.username;
-            console.log(req.session);
-
             res.json(currentUser._id);
 
         } else res.send('Username or password is invalid');
     })
+});
+router.get('/', async (req, res) => {
+    if (req.session.logged) {
+        res.json(req.session.name);
+    } else {
+        res.send(JSON.stringify({ validationError: 'This username or email is already in use!' }))
+    }
 })
+
 
 module.exports = router;
