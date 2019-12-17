@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   friends: Array,
   leagues: Array,
   // stats - объект с ключами: games, wins, goals, etc. Эти ключи будут изменяться по мере завершения игр.
-  stats: Array
+  stats: Object
 });
 
 userSchema.statics.getUserByName = async function(username) {
