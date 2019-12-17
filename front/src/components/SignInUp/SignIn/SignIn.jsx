@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FetchToLoginAC } from '../redux/actions/actions';
+import { FetchToLoginAC } from '../../../redux/actions/actions';
+import './SignIn.css';
+
 
 class Login extends Component {
     state = {
@@ -25,11 +27,16 @@ class Login extends Component {
 
     render() {
       return (
-            <form>
-                <input className='login' type="text" required/>
-                <input className='password' type="password" required/>
-                <button onClick={this.preFetchLogin}>Login</button>
-            </form>
+        <form className='login'>
+
+            <label className='login__user-name-label'>Login</label>
+            <input className='login__user-name-input' onChange={this.handleChangeUsername} type="text" placeholder='login' required />
+
+            <label className='login__password-label'>Password</label>
+            <input className='login__password-input' onChange={this.handleChangePassword} type="password" placeholder='password' required />
+
+            <button className='login__button' onClick={this.preFetchLogin}>Sign In</button>
+        </form>
       );
     }
 }

@@ -1,0 +1,33 @@
+.createLeague {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 50%;
+}
+
+.createLeague__label {
+  color: #dedcdc;
+  text-transform: uppercase;
+  padding-left: 5%;
+  margin-bottom: 1%;
+}
+
+.createLeague__input {
+  color: #dedcdc;
+  padding: 5% 7%;
+  background: none;
+  border: 2px solid #dedcdc;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  outline: none;
+}
+
+.createLeague__button {
+  color: #2d9057;
+  padding: 2% 5%;
+  border: none;
+  background: white;
+  border-radius: 5px;
+  margin-bottom: 5%;
+  outline: none;
+}

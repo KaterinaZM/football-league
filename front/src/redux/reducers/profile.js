@@ -50,8 +50,40 @@ const initialState = {
         teammate: 'Valera'
       }
     ]
+  },
+  events: [
+    {
+      name: 'First liga',
+      date: '12.12.2019'
+
+    },
+    {
+      name: 'Second liga',
+      date: '13.12.2019'
+    },
+    {
+      name: 'September Cup',
+      date: '14.12.2019'
+    },
+    {
+      name: 'Third liga',
+      date: '15.12.2019'
+    },
+    {
+      name: 'Fourth liga',
+      date: '16.12.2019'
+    },
+    {
+      name: 'November liga',
+      date: '17.12.2019'
+    },
+    {
+      name: 'All Stars Cup',
+      date: '18.12.2019'
+    }
+  ]
   }
-};
+
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
