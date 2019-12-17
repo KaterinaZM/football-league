@@ -9,6 +9,9 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
 }
 .sign-in-up__menu {
   display: flex;
