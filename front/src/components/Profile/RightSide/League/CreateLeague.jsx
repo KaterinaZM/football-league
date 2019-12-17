@@ -36,7 +36,7 @@ export default class CreateLeague extends Component {
   render() {
     return <>
       <label className='createLeague__label'>Leagues</label>
-      <ul className='createLeague' style={{ color: "white" }}>{this.state.leagues.map(element => <li style = {{listStyleType: "none"}}> {element.leagueName}
+      <ul className='createLeague' style={{ color: "white" }}>{this.state.leagues.map(element => <li style={{ listStyleType: "none" }}> {element.leagueName}
         <button className='createLeague__button'>Join</button> </li>)} </ul>
       <form className='createLeague' name='createLeague' onSubmit={this.onSubmit}>
         <label className='createLeague__label'>New League</label>
