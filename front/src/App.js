@@ -68,6 +68,7 @@ class App extends Component {
               <Route exact path="/signin" component={SignInUp} />
               <Route exact path="/profile/leagues" component={Profile} />
               <Route exact path="/profile/playgrounds" component={Profile} />
+              <Route exact path="/leagues/:id" component={Profile} />
             </Switch>
           </div>
         </Router>

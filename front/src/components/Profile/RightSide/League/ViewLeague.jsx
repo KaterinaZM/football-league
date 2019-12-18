@@ -30,9 +30,6 @@ export default class CreateLeague extends Component {
           ))}
         </ul>
         <button className="view-league-list__button">Start games</button>
-        <Link onClick={this.startGame(this.state)} to="/league/events">
-          Start League
-        </Link>
       </>
     );
   }
