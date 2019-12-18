@@ -1,41 +1,53 @@
 const express = require("express");
 const router = express.Router();
-const League = require("../models/league");
-const Teams = require("../models/team");
 const Users = require("../models/user");
-const Players = require("../models/player");
+const League = require("../models/league");
 const splitToTeams = require("../scripts/randomizers");
+// const sgMail = require('@sendgrid/mail');
 
-router.get('/leagues', async (req, res) => {
-  const leagues = await League.find()
+router.get("/leagues", async (req, res) => {
+  const leagues = await League.find();
   res.send(JSON.stringify(leagues));
-})
+});
 
 router.post("/newleague", async (req, res) => {
+  // sgMail.setApiKey(process.env.SENDGRID_API_KEY); SENDS EMAIL NOTIFICATION
+  // const msg = {
+  //   to: 'katerina.sobetskaia@gmail.com',
+  //   from: 'katerina.zabrovskaya@gmail.com',
+  //   subject: 'New League was created. Ready to play?',
+  //   text: 'You created a new league, lets wait for others to register for it.',
+  // };
+  // console.log(msg);
 
   let newLeague = await new League({
     leagueName: req.body.leagueName,
+    creator: req.body.creator,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     users: [],
-    teams: []
+    teams: [],
+    events: [],
+    leagueStats: []
   }).save();
 
+  let creatorUser = await Users.findById(req.body.creator);
+  creatorUser.leagues.push(newLeague);
+  await creatorUser.save();
+  console.log(creatorUser.leagues);
+
+  // console.log(newLeague._id);
+
   res.send(JSON.stringify(newLeague._id));
+  // sgMail.send(msg);
 });
-// router.post('/', async (req, res) => {
-//   const startDate = Date.now();
-//   const endDate = new Date(Date.now() + 12096e5);
-//   await League.create({ startDate: startDate, endDate: endDate, users: [], teams: [] });
-//   res.end();
-// })
 
 router.post("/leagues/:id", async (req, res) => {
   const id = req.body.id;
-  const league = await League.findById({ _id: id })
+  const league = await League.findById({ _id: id });
   const userPool = league.users;
   res.send(JSON.stringify(userPool));
-})
+});
 
 router.post("/newplayer", async (req, res) => {
   let leagueToJoin = await League.findById(req.body.leagueID);
