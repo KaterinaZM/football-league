@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ViewLeague.css';
 
 export default class CreateLeague extends Component {
   state = {
@@ -20,8 +21,10 @@ export default class CreateLeague extends Component {
 
   render() {
     return <>
-      <ul>{this.state.userPool.map((element) => <li> {element.username} </li>)} </ul>
-      <button>Start games</button>
-    </>
+      <ul className='view-league-list'>
+        {this.state.userPool.map((element) => <li className='view-league-list__item'> {element.username} </li>)}
+      </ul>
+      <button className='view-league-list__button'>Start games</button>
+    </>;
   }
 }

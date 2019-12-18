@@ -1,0 +1,51 @@
+.league-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  list-style-type: none;
+  color:rgba(222, 220, 220, 1);
+  background:rgba(37, 37, 37, .8);
+  box-sizing:border-box;
+  overflow: auto;
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1%;
+    padding: 1% 2%;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      background:rgba(47, 142, 83, 1);
+    }
+  }
+
+  &__item-name {
+    width: 35%;
+  }
+
+  &__item-date {
+    width: 25%;
+  }
+
+  &__item-users {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 5%;
+  }
+
+  &__item-details {
+    width: 10%;
+  }
+
+  &__item-join {
+    width: 10%;
+  }
+}

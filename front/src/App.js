@@ -1,22 +1,22 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Profile from "./components/Profile/Profile";
-import SignInUp from "./components/SignInUp/SignInUp";
-import { connect } from "react-redux";
-import { loginUserAC } from "./redux/actions/actions";
-import "./App.css";
-import { userInfo } from "os";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userInfo } from 'os';
+import Profile from './components/Profile/Profile';
+import SignInUp from './components/SignInUp/SignInUp';
+import { loginUserAC } from './redux/actions/actions';
+import './App.css';
 
 class App extends Component {
   async componentDidMount() {
-    const response = await fetch("/api/login", {
-      credentials: "include"
+    const response = await fetch('/api/login', {
+      credentials: 'include'
     });
-    let result = await response.json();
-    const getProfile = await fetch("api/profileinfo", {
-      method: "POST",
+    const result = await response.json();
+    const getProfile = await fetch('api/profileinfo', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify({ userID: result })
     });
@@ -25,9 +25,10 @@ class App extends Component {
     if (!response.validationError) {
       this.props.loginCheck(result, getProfileRes);
     } else {
-      alert("Something went wrong!");
+      alert('Something went wrong!');
     }
   }
+
   render() {
     return (
       <Router>
