@@ -30,6 +30,7 @@ router.post("/newleague", async (req, res) => {
     events: [],
     leagueStats: []
   }).save();
+console.log('>>>>>>>>>>>222222');
 
   let creatorUser = await Users.findById(req.body.creator);
   creatorUser.leagues.push(newLeague);
@@ -45,12 +46,16 @@ router.post("/newleague", async (req, res) => {
 
 router.post("/leagues/:id", async (req, res) => {
   const id = req.body.id;
+  console.log('>>>>>>>>>7777');
+  
   const league = await League.findById({ _id: id });
   const userPool = league.users;
   res.send(JSON.stringify(userPool));
 });
 
 router.post("/newplayer", async (req, res) => {
+  console.log('>>>>>>>>333333333');
+  
   let leagueToJoin = await League.findById(req.body.leagueID);
   let reqUser = await Users.findById(req.body.userID);
   leagueToJoin.users.push(reqUser._id).save();

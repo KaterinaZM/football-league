@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import "./ViewLeague.css";
 
 export default class CreateLeague extends Component {
   state = {
@@ -21,19 +22,17 @@ export default class CreateLeague extends Component {
   }
 
   render() {
-    console.log(this.state.userPool);
-
     return (
       <>
-        <ul>
+        <ul className="view-league-list">
           {this.state.userPool.map(element => (
-            <>
-              <li> {element.username} </li>
-            </>
-          ))}{" "}
+            <li className="view-league-list__item"> {element.username} </li>
+          ))}
         </ul>
-
-        <Link onClick = {this.startGame(this.state)}to="/league/events">Start League</Link>
+        <button className="view-league-list__button">Start games</button>
+        <Link onClick={this.startGame(this.state)} to="/league/events">
+          Start League
+        </Link>
       </>
     );
   }

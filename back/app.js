@@ -12,6 +12,7 @@ const gamestartRouter = require("./routes/gamestart");
 const loginRouter = require("./routes/login");
 const signUpRouter = require("./routes/signup");
 const leagueRouter = require("./routes/league");
+const logoutRouter = require("./routes/logout");
 const profileinfoRouter = require("./routes/profileinfo");
 const currentleagueRouter = require("./routes/currentleague");
 currentleagueRouter
@@ -40,7 +41,10 @@ app.use(
     key: "user_sid",
     secret: "oh klahoma",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000,
+    }
   })
 );
 
@@ -57,7 +61,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Allows you to use PUT, DELETE with forms.
 app.use(
-  methodOverride(function(req, res) {
+  methodOverride(function (req, res) {
     if (req.body && typeof req.body === "object" && "_method" in req.body) {
       // look in urlencoded POST bodies and delete it
       const method = req.body._method;
@@ -83,14 +87,15 @@ app.use("/api/currentleague", currentleagueRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/signup", signUpRouter);
 app.use("/api/profileinfo", profileinfoRouter);
+app.use("/api/logout", logoutRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Main from './Main/Main';
-import League from './League/League'
+import League from './League/League';
 import CreateLeague from './League/CreateLeague';
 import Playgrounds from './Playgrounds/Playgrounds';
 import ViewLeague from './League/ViewLeague';
@@ -12,7 +12,6 @@ import './RightSide.css';
 class RightSide extends Component {
   render() {
     return (
-     <Router>
         <div className="right-side">
 
           <Route exact path="/profile" component={Main} />
@@ -22,7 +21,6 @@ class RightSide extends Component {
           <Route exact path="/profile/leagues" component={League} />
 
         </div>
-      </Router>
     );
   }
 }

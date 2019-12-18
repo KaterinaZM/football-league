@@ -1,33 +1,43 @@
-.createLeague {
+.league-list {
   display: flex;
   flex-direction: column;
-  width: 25%;
-  height: 50%;
-}
-
-.createLeague__label {
+  justify-content: flex-start;
+  list-style-type: none;
   color: #dedcdc;
-  text-transform: uppercase;
-  padding-left: 5%;
+  background: rgba(37, 37, 37, 0.8);
+  box-sizing: border-box;
+  overflow: auto;
+}
+.league-list__item {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
   margin-bottom: 1%;
+  padding: 1% 2%;
 }
-
-.createLeague__input {
-  color: #dedcdc;
-  padding: 5% 7%;
-  background: none;
-  border: 2px solid #dedcdc;
-  border-radius: 5px;
-  margin-bottom: 5%;
-  outline: none;
+.league-list__item:last-child {
+  margin-bottom: 0;
 }
-
-.createLeague__button {
-  color: #2d9057;
-  padding: 2% 5%;
-  border: none;
-  background: white;
-  border-radius: 5px;
-  margin-bottom: 5%;
-  outline: none;
+.league-list__item:hover {
+  background: #2f8e53;
+}
+.league-list__item-name {
+  width: 35%;
+}
+.league-list__item-date {
+  width: 25%;
+}
+.league-list__item-users {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 5%;
+}
+.league-list__item-details {
+  width: 10%;
+}
+.league-list__item-join {
+  width: 10%;
 }
