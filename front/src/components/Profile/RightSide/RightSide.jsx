@@ -10,7 +10,6 @@ import './RightSide.css';
 class RightSide extends Component {
   render() {
     return (
-     <Router>
         <div className="right-side">
 
           <Route exact path="/profile" component={Main} />
@@ -18,7 +17,6 @@ class RightSide extends Component {
           <Route exact path="/leagues/:id" component={ViewLeague} />
 
         </div>
-      </Router>
     );
   }
 }

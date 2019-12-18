@@ -10,17 +10,17 @@ export default class SignInUp extends Component {
     return (
 
       // <Router>
-        <div className="sign-in-up">
-          <nav className="sign-in-up__menu">
-            <Link className="sign-in-up__menu-item" to='/'>Sign In</Link>
-            <Link className="sign-in-up__menu-item" to='/signup'>Sign Up</Link>
-          </nav>
+      <div className="sign-in-up">
+        <nav className="sign-in-up__menu">
+          <Link className="sign-in-up__menu-item" to='/signin'>Sign In</Link>
+          <Link className="sign-in-up__menu-item" to='/signup'>Sign Up</Link>
+        </nav>
 
-          {/* <Switch> */}
-          <Route exact path='/' component={SignIn} />
-          <Route exact path='/signup' component={SignUp} />
-          {/* </Switch> */}
-        </div>
+        <Switch>
+        <Route exact path='/signup' component={SignUp} />
+        <Route exact path='/signin' component={SignIn} />
+        </Switch>
+      </div>
       // </Router>
     );
   }

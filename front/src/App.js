@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Profile from "./components/Profile/Profile";
 import SignInUp from "./components/SignInUp/SignInUp";
 import { connect } from "react-redux";
@@ -13,35 +13,59 @@ class App extends Component {
       credentials: "include"
     });
     let result = await response.json();
-    const getProfile = await fetch("api/profileinfo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ userID: result })
-    });
-    const getProfileRes = await getProfile.json();
+    if (result) {
+      const getProfile = await fetch("api/profileinfo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ userID: result })
+      });
+      const getProfileRes = await getProfile.json();
 
-    if (!response.validationError) {
+      // if (!response.validationError) {
       this.props.loginCheck(result, getProfileRes);
-    } else {
-      alert("Something went wrong!");
+      // } else {
+      //   alert("Something went wrong!");
+      // }
+    }
+    else {
+      //alert('eroroljkfdvjlkv')
+      //this.props.userLogged = false
+      this.props.loginCheck(false, false)
+      console.log(this.props);
+
     }
   }
+
   render() {
-    return (
-      <Router>
-        <div className="App">
-          <Switch>
+    const userLogged = this.props.userLogged
+    console.log('User logged ' + userLogged);
 
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/profile/calendar" component={Profile} />
-            <Route path='/' component={SignInUp} />
-          </Switch>
+    if (userLogged === "") {
+      return (<h1>Please, wait</h1>)
+    } else {
+      console.log("userLogges:" + typeof (userLogged));
+      return (
+        <Router>
+          <div className="App">
+            <Switch>
+              <Route exact path="/">
+                {userLogged
+                  ? <Redirect to="/profile" />
+                  : <Redirect to="/signin" />}
 
-        </div>
-      </Router>
-    );
+              </Route>
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile/calendar" component={Profile} />
+              <Route exact path='/signup' component={SignInUp} />
+              <Route exact path='/signin' component={SignInUp} />
+            </Switch>
+
+          </div>
+        </Router>
+      );
+    }
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -51,4 +75,9 @@ function mapDispatchToProps(dispatch) {
     }
   };
 }
-export default connect(null, mapDispatchToProps)(App);
+function mapStateToProps(state) {
+  return {
+    userLogged: state.userLogged
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import User from './User/User';
 import Menu from './Menu/Menu';
 import './LeftSide.css';
+import Logout from './Logout/Logout';
 
 export default class LeftSide extends Component {
   render() {
@@ -9,6 +10,7 @@ export default class LeftSide extends Component {
       <div className="left-side">
         <User />
         <Menu />
+        <Logout {...this.props} />
       </div>
     );
   }
