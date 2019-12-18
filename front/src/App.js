@@ -1,17 +1,18 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
-import Profile from "./components/Profile/Profile";
-import SignInUp from "./components/SignInUp/SignInUp";
-import { connect } from "react-redux";
-import { loginUserAC } from "./redux/actions/actions";
-import "./App.css";
-import { userInfo } from "os";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userInfo } from 'os';
+import Profile from './components/Profile/Profile';
+import SignInUp from './components/SignInUp/SignInUp';
+import { loginUserAC } from './redux/actions/actions';
+import './App.css';
 
 class App extends Component {
   async componentDidMount() {
-    const response = await fetch("/api/login", {
-      credentials: "include"
+    const response = await fetch('/api/login', {
+      credentials: 'include'
     });
+
     let result = await response.json();
     if (result) {
       const getProfile = await fetch("api/profileinfo", {
@@ -25,6 +26,7 @@ class App extends Component {
 
       // if (!response.validationError) {
       this.props.loginCheck(result, getProfileRes);
+
       // } else {
       //   alert("Something went wrong!");
       // }
@@ -34,11 +36,11 @@ class App extends Component {
       //this.props.userLogged = false
       this.props.loginCheck(false, false)
       console.log(this.props);
-
     }
   }
 
   render() {
+
     const userLogged = this.props.userLogged
     console.log('User logged ' + userLogged);
 
@@ -60,6 +62,8 @@ class App extends Component {
               <Route exact path="/profile/calendar" component={Profile} />
               <Route exact path='/signup' component={SignInUp} />
               <Route exact path='/signin' component={SignInUp} />
+              <Route exact path="/profile/leagues" component={Profile} />
+              <Route exact path="/profile/playgrounds" component={Profile} />
             </Switch>
 
           </div>

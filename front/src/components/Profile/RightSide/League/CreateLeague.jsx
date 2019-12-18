@@ -1,20 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./League.css";
-import { timingSafeEqual } from "crypto";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './CreateLeague.css';
+import { timingSafeEqual } from 'crypto';
 
 class CreateLeague extends Component {
-  // state = {
-  //   leagues: []
-  // };
-
-  // async componentDidMount() {
-  //   const response = await fetch(`/api/leagues`);
-  //   const data = await response.json();
-  //   this.setState({ leagues: data });
-  // }
-
-  onSubmit = async event => {
+  onSubmit = async (event) => {
     event.preventDefault();
 
     const newLeague = {
@@ -24,10 +14,10 @@ class CreateLeague extends Component {
       endDate: event.target.endDate.value
     };
 
-    const response = await fetch("/api/newleague", {
-      method: "POST",
+    const response = await fetch('/api/newleague', {
+      method: 'POST',
       headers: {
-        "content-type": "application/json"
+        'content-type': 'application/json'
       },
       body: JSON.stringify(newLeague)
     });
@@ -40,17 +30,6 @@ class CreateLeague extends Component {
 
     return (
       <>
-        {/* <label className="createLeague__label">Leagues</label>
-        <ul className="createLeague" style={{ color: "white" }}>
-          {this.state.leagues.map(element => (
-            <li style={{ listStyleType: "none" }}>
-              {" "}
-              {element.leagueName}
-              <button className="createLeague__button">Join</button>{" "}
-            </li>
-          ))}{" "}
-        </ul> */}
-
         <form
           className="createLeague"
           name="createLeague"
