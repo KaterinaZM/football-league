@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { userInfo } from 'os';
 import Profile from './components/Profile/Profile';
 import SignInUp from './components/SignInUp/SignInUp';
 import { loginUserAC } from './redux/actions/actions';
 import './App.css';
-import { userInfo } from 'os';
 
 class App extends Component {
   async componentDidMount() {

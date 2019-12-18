@@ -1,11 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import "./League.css";
-import { timingSafeEqual } from "crypto";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import './CreateLeague.css';
+import { timingSafeEqual } from 'crypto';
 
 class CreateLeague extends Component {
-
-  onSubmit = async event => {
+  onSubmit = async (event) => {
     event.preventDefault();
 
     const newLeague = {
@@ -15,10 +14,10 @@ class CreateLeague extends Component {
       endDate: event.target.endDate.value
     };
 
-    const response = await fetch("/api/newleague", {
-      method: "POST",
+    const response = await fetch('/api/newleague', {
+      method: 'POST',
       headers: {
-        "content-type": "application/json"
+        'content-type': 'application/json'
       },
       body: JSON.stringify(newLeague)
     });

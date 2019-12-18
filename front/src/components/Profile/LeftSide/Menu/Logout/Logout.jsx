@@ -10,9 +10,9 @@ class Logout extends Component {
 
     render() {
       return (
-            <form className='sign-up'>
-                <button onClick={this.logoutFetch}>Sign Out</button>
-            </form>
+
+        <button onClick={this.logoutFetch}>Sign Out</button>
+
       );
     }
 }
