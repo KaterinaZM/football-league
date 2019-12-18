@@ -42,6 +42,7 @@ router.post("/newleague", async (req, res) => {
   // sgMail.send(msg);
 });
 
+
 router.post("/leagues/:id", async (req, res) => {
   const id = req.body.id;
   const league = await League.findById({ _id: id });

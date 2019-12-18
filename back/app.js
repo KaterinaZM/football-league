@@ -13,6 +13,8 @@ const loginRouter = require("./routes/login");
 const signUpRouter = require("./routes/signup");
 const leagueRouter = require("./routes/league");
 const profileinfoRouter = require("./routes/profileinfo");
+const currentleagueRouter = require("./routes/currentleague");
+currentleagueRouter
 const app = express();
 
 // Подключаем mongoose.
@@ -77,6 +79,7 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/", gamestartRouter);
 app.use("/api", leagueRouter);
+app.use("/api/currentleague", currentleagueRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/signup", signUpRouter);
 app.use("/api/profileinfo", profileinfoRouter);
