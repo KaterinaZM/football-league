@@ -4,10 +4,6 @@ import "./League.css";
 import { timingSafeEqual } from "crypto";
 
 class CreateLeague extends Component {
-  // state = {
-  //   leagues: []
-  // };
-
 
   onSubmit = async event => {
     event.preventDefault();
@@ -35,17 +31,6 @@ class CreateLeague extends Component {
 
     return (
       <>
-        {/* <label className="createLeague__label">Leagues</label>
-        <ul className="createLeague" style={{ color: "white" }}>
-          {this.state.leagues.map(element => (
-            <li style={{ listStyleType: "none" }}>
-              {" "}
-              {element.leagueName}
-              <button className="createLeague__button">Join</button>{" "}
-            </li>
-          ))}{" "}
-        </ul> */}
-
         <form
           className="createLeague"
           name="createLeague"
