@@ -35,6 +35,7 @@ class App extends Component {
           <Route exact path="/" component={SignInUp} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/profile/calendar" component={Profile} />
+          <Route exact path="/profile/leagues" component={Profile} />
           <Route exact path="/profile/playgrounds" component={Profile} />
         </div>
       </Router>

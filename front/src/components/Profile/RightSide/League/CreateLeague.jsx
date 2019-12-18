@@ -8,11 +8,6 @@ class CreateLeague extends Component {
   //   leagues: []
   // };
 
-  // async componentDidMount() {
-  //   const response = await fetch(`/api/leagues`);
-  //   const data = await response.json();
-  //   this.setState({ leagues: data });
-  // }
 
   onSubmit = async event => {
     event.preventDefault();
