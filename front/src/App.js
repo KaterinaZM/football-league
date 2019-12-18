@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { userInfo } from 'os';
-import Profile from './components/Profile/Profile';
-import SignInUp from './components/SignInUp/SignInUp';
-import { loginUserAC } from './redux/actions/actions';
-import './App.css';
+import React, { Component } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+import { connect } from "react-redux";
+import { userInfo } from "os";
+import Profile from "./components/Profile/Profile";
+import SignInUp from "./components/SignInUp/SignInUp";
+import { loginUserAC } from "./redux/actions/actions";
+import "./App.css";
 
 class App extends Component {
   async componentDidMount() {
-    const response = await fetch('/api/login', {
-      credentials: 'include'
+    const response = await fetch("/api/login", {
+      credentials: "include"
     });
 
     let result = await response.json();
@@ -30,42 +35,40 @@ class App extends Component {
       // } else {
       //   alert("Something went wrong!");
       // }
-    }
-    else {
+    } else {
       //alert('eroroljkfdvjlkv')
       //this.props.userLogged = false
-      this.props.loginCheck(false, false)
+      this.props.loginCheck(false, false);
       console.log(this.props);
     }
   }
 
   render() {
-
-    const userLogged = this.props.userLogged
-    console.log('User logged ' + userLogged);
+    const userLogged = this.props.userLogged;
+    console.log("User logged " + userLogged);
 
     if (userLogged === "") {
-      return (<h1>Please, wait</h1>)
+      return <h1>Please, wait</h1>;
     } else {
-      console.log("userLogges:" + typeof (userLogged));
+      console.log("userLogges:" + typeof userLogged);
       return (
         <Router>
           <div className="App">
             <Switch>
               <Route exact path="/">
-                {userLogged
-                  ? <Redirect to="/profile" />
-                  : <Redirect to="/signin" />}
-
+                {userLogged ? (
+                  <Redirect to="/profile" />
+                ) : (
+                  <Redirect to="/signin" />
+                )}
               </Route>
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/profile/calendar" component={Profile} />
-              <Route exact path='/signup' component={SignInUp} />
-              <Route exact path='/signin' component={SignInUp} />
+              <Route exact path="/signup" component={SignInUp} />
+              <Route exact path="/signin" component={SignInUp} />
               <Route exact path="/profile/leagues" component={Profile} />
               <Route exact path="/profile/playgrounds" component={Profile} />
             </Switch>
-
           </div>
         </Router>
       );
