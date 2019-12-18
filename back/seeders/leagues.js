@@ -24,7 +24,8 @@ async function fakeLeague() {
     newArr.push({ username: el.username, _id: el._id });
   });
   console.log(newArr);
-
+  console.log('>>>>>>>>>>5');
+  
   let newLeague = await new League({
     leagueName: "That one League",
     creator: firstUser[0]._id,

@@ -1,4 +1,4 @@
-import { LOGIN_USER, GET_USER_DETAILS } from "./actionTypes";
+import { LOGIN_USER, GET_USER_DETAILS, LOGOUT_USER } from "./actionTypes";
 
 export default function getUserDetails(id) {
   return {
@@ -40,10 +40,27 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
 
     dispatch(loginUserAC(userLoggedIn, getProfileRes));
   } catch (err) {
-    // alert(err);
+    dispatch(loginUserAC(false, false));
+    alert(err);
   }
 };
-
+export const FetchToLogoutAC = () => async dispatch => {
+  // try {
+  const userLogoutData = await fetch("api/logout", {
+    credentials: "include"
+  });
+  const userLogout = await userLogoutData.json();
+  if (userLogout) {
+    await dispatch(logoutUserAC())
+  }
+  // } catch (err) {
+  //   alert('Logout' + err)
+  // }
+}
+export const logoutUserAC = () => ({
+  type: LOGOUT_USER,
+  userLogged: false
+});
 export const FetchToSignUpAC = (
   username,
   email,

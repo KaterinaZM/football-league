@@ -4,6 +4,8 @@ const League = require('../models/league')
 
 // find events the user is part of
 router.get("/api/profile", async (req, res) => {
+  console.log('><<<<<<<<<<<<111111');
+  
   const leagues = await League.findById({_id: id })
   const events = leagues.events
   res.send(leagues);

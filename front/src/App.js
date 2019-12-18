@@ -12,35 +12,64 @@ class App extends Component {
     const response = await fetch('/api/login', {
       credentials: 'include'
     });
-    const result = await response.json();
-    const getProfile = await fetch('api/profileinfo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ userID: result })
-    });
-    const getProfileRes = await getProfile.json();
 
-    if (!response.validationError) {
+    let result = await response.json();
+    if (result) {
+      const getProfile = await fetch("api/profileinfo", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ userID: result })
+      });
+      const getProfileRes = await getProfile.json();
+
+      // if (!response.validationError) {
       this.props.loginCheck(result, getProfileRes);
-    } else {
-      alert('Something went wrong!');
+
+      // } else {
+      //   alert("Something went wrong!");
+      // }
+    }
+    else {
+      //alert('eroroljkfdvjlkv')
+      //this.props.userLogged = false
+      this.props.loginCheck(false, false)
+      console.log(this.props);
     }
   }
 
   render() {
-    return (
-      <Router>
-        <div className="App">
-          <Route exact path="/" component={SignInUp} />
-          <Route exact path="/profile" component={Profile} />
-          <Route exact path="/profile/calendar" component={Profile} />
-          <Route exact path="/profile/leagues" component={Profile} />
-          <Route exact path="/profile/playgrounds" component={Profile} />
-        </div>
-      </Router>
-    );
+
+    const userLogged = this.props.userLogged
+    console.log('User logged ' + userLogged);
+
+    if (userLogged === "") {
+      return (<h1>Please, wait</h1>)
+    } else {
+      console.log("userLogges:" + typeof (userLogged));
+      return (
+        <Router>
+          <div className="App">
+            <Switch>
+              <Route exact path="/">
+                {userLogged
+                  ? <Redirect to="/profile" />
+                  : <Redirect to="/signin" />}
+
+              </Route>
+              <Route exact path="/profile" component={Profile} />
+              <Route exact path="/profile/calendar" component={Profile} />
+              <Route exact path='/signup' component={SignInUp} />
+              <Route exact path='/signin' component={SignInUp} />
+              <Route exact path="/profile/leagues" component={Profile} />
+              <Route exact path="/profile/playgrounds" component={Profile} />
+            </Switch>
+
+          </div>
+        </Router>
+      );
+    }
   }
 }
 function mapDispatchToProps(dispatch) {
@@ -50,4 +79,9 @@ function mapDispatchToProps(dispatch) {
     }
   };
 }
-export default connect(null, mapDispatchToProps)(App);
+function mapStateToProps(state) {
+  return {
+    userLogged: state.userLogged
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
