@@ -22,6 +22,6 @@ export default class CreateLeague extends Component {
     return <>
       <ul>{this.state.userPool.map((element) => <li> {element.username} </li>)} </ul>
       <button>Start games</button>
-    </>
+    </>;
   }
 }

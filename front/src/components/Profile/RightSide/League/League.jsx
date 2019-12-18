@@ -18,11 +18,9 @@ export default class League extends Component {
 
   render() {
     return <>
-      <ul style={{ color: 'white' }}>{this.state.leagues.map((element)  => {
-        return <li style={{ listStyleType: 'none' }}> {element.leagueName} {element.startDate} {element.users.length}
+      <ul style={{ color: 'white' }}>{this.state.leagues.map((element) => <li style={{ listStyleType: 'none' }}> {element.leagueName} {element.startDate} {element.users.length}
           <button id={element._id} onClick={this.onClick}>Details</button>
-          <button>Join</button></li>;
-      })}
+          <button>Join</button></li>)}
       </ul>
     </>;
   }
