@@ -16,7 +16,7 @@ export default class Menu extends Component {
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to="/profile/teammates">Teammates</Link>
+              <Link className="menu__link" to="/profile/leagues">Browse Leagues</Link>
             </li>
 
             <li className="menu__item">
@@ -24,7 +24,7 @@ export default class Menu extends Component {
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to="/profile/calendar">Calendar</Link>
+              <Link className="menu__link" to="/profile/calendar">My Events</Link>
             </li>
 
             <li className="menu__item">
