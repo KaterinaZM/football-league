@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Main from './Main/Main';
 import League from './League/League'
 import CreateLeague from './League/CreateLeague';
+import Playgrounds from './Playgrounds/Playgrounds';
 import ViewLeague from './League/ViewLeague';
 import './RightSide.css';
 
@@ -16,6 +17,7 @@ class RightSide extends Component {
 
           <Route exact path="/profile" component={Main} />
           <Route exact path="/profile/calendar" component={CreateLeague} />
+          <Route exact path="/profile/playgrounds" component={Playgrounds} />
           <Route exact path="/leagues/:id" component={ViewLeague} />
           <Route exact path="/profile/leagues" component={League} />
 
