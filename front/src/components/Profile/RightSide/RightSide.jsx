@@ -14,11 +14,11 @@ class RightSide extends Component {
     return (
       <div className="right-side">
         <Route exact path="/profile" component={Main} />
-        <Route exact path="/calendar" component={CreateLeague} />
-        <Route exact path="/playgrounds" component={Playgrounds} />
+        <Route exact path="/profile/calendar" component={CreateLeague} />
+        <Route exact path="/profile/playgrounds" component={Playgrounds} />
         <Route exact path="/leagues/:id" component={ViewLeague} />
-        <Route exact path="/leagues" component={League} />
-        <Route exact path="/events" component={OngoingLeague} />
+        <Route exact path="/profile/leagues" component={League} />
+        <Route exact path="/league/events" component={OngoingLeague} />
       </div>
     );
   }
