@@ -3,15 +3,29 @@ import { connect } from "react-redux";
 import "./Main.css";
 
 class Main extends Component {
+  state = {
+    news: [],
+  }
+  async componentDidMount() {
+    const response = await fetch("/api/news");
+    const news = await response.json();
+    console.log(news);
+
+    this.setState({ news: news })
+  }
   render() {
     let stats = this.props.userDetails.stats || {}
     let leagues = this.props.userDetails.leagues || []
+
     return (
       <div className="main__wrapper">
         <div className="main__main-box">
           <span className="main__main-box-title">Latest News</span>
           <div className="main__small-box-body">
-            <span className="main__user-games">Some news</span>
+            <span className="main__user-games">
+            <ul>{this.state.news.map(element =>
+              <li>{element.title} <br /> {element.msg}</li>)}
+              </ul></span>
           </div>
         </div>
 
