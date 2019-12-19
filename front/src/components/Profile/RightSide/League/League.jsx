@@ -51,12 +51,6 @@ class League extends Component {
                 Details
               </button>
               <button className="league-list__item-join">Join</button>
-              <Link
-                to="/league/events"
-                onClick={() => this.startGame(element._id)}
-              >
-                Start!
-              </Link>
             </li>
           ))}
         </ul>

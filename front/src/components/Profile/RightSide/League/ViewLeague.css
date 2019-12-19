@@ -22,3 +22,11 @@
   background: #2f8e53;
   border: none;
 }
+
+/* temp class added by maxim */
+.view-league-list-td {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-evenly;
+}
