@@ -64,13 +64,13 @@ class App extends Component {
                 )}
               </Route>
               <Route exact path="/profile" component={Profile} />
-              <Route exact path="/calendar" component={Profile} />
+              <Route exact path="/profile/calendar" component={Profile} />
               <Route exact path="/signup" component={SignInUp} />
               <Route exact path="/signin" component={SignInUp} />
-              <Route exact path="/leagues" component={Profile} />
-              <Route exact path="/playgrounds" component={Profile} />
+              <Route exact path="/profile/leagues" component={Profile} />
+              <Route exact path="/profile/playgrounds" component={Profile} />
               <Route exact path="/leagues/:id" component={Profile} />
-              <Route exact path="/events" component={Profile} />
+              <Route exact path="/league/events" component={Profile} />
             </Switch>
           </div>
         </Router>
