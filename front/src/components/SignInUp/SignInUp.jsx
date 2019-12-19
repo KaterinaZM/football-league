@@ -13,7 +13,7 @@ export default class SignInUp extends Component {
       <div className="sign-in-up">
         <nav className="sign-in-up__menu">
           <Link className="sign-in-up__menu-item" to='/signin'>Sign In</Link>
-          <Link className="sign-in-up__menu-item" to='/signup'>Sign Up</Link>
+          <Link className="sign-in-up__menu-item" id='to-signup' to='/signup'>Sign Up</Link>
         </nav>
 
         <Switch>

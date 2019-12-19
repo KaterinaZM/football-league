@@ -23,7 +23,6 @@ function randomPair(array) {
 }
 
 function splitToTeams(users, teams) {
-
   if (users.length > 1) {
     let pair = randomPair(users);
     let team = {
@@ -53,4 +52,4 @@ function splitToTeams(users, teams) {
 // console.log(testArr);
 // console.log(outputArr);
 
-module.exports = { splitToTeams, randomPair, randomInt };
+module.exports = splitToTeams;
