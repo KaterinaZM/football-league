@@ -58,6 +58,7 @@ class App extends Component {
               <Route exact path="/">
                 {userLogged ? (
                   <Redirect to="/profile" />
+                  
                 ) : (
                   <Redirect to="/signin" />
                 )}
