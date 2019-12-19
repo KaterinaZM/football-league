@@ -82,13 +82,28 @@ export const FetchToSignUpAC = (
         password
       })
     });
-    const responseJSON = await response.json();
-    if (responseJSON.validationError) {
-      alert(responseJSON.validationError);
-    } else if (responseJSON.successMessage) {
-      console.log(username, password);
-      await dispatch(FetchToLoginAC(username, password));
+
+    if (response.status === 200) {
+      const responseJSON = await response.json();
+      console.log(responseJSON)
+  
+      if(responseJSON.errorName) {
+        document.getElementById('errorName').innerText = responseJSON.errorName;
+        document.getElementById('userName').style.borderColor = 'red';
+        document.getElementById('errorEmail').innerText = '';
+        document.getElementById('email').style.borderColor = 'white';
+  
+      } else if (responseJSON.errorEmail){
+        document.getElementById('errorEmail').innerText = responseJSON.errorEmail;
+        document.getElementById('userName').style.borderColor = 'white';
+        document.getElementById('email').style.borderColor = 'red';
+        document.getElementById('errorName').innerText = '';
+      } else if (responseJSON.successMessage) {
+          console.log(username, password);
+          await dispatch(FetchToLoginAC(username, password));
+        }
     }
+    
   } catch (err) {
     //alert(err);
   }
