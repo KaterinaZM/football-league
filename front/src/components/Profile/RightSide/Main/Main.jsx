@@ -4,20 +4,28 @@ import "./Main.css";
 
 class Main extends Component {
   render() {
+    let stats = this.props.userDetails.stats || {}
+    let leagues = this.props.userDetails.leagues || []
     return (
       <div className="main__wrapper">
         <div className="main__main-box">
-          <span className="main__main-box-title">Last News</span>
+          <span className="main__main-box-title">Latest News</span>
+          <div className="main__small-box-body">
+            <span className="main__user-games">Some news</span>
+          </div>
         </div>
 
         <div className="main__events">
           <span className="main__events-title">Next Events</span>
 
           <ul className="main__events-body">
-            {this.props.events.map(event => (
-              <li className="main__events-item">
-                {event.name}: {event.date}
-              </li>
+            {leagues.map(element => (
+              element.events.map(event => (
+                <li className="main__events-item" >
+                  {event.date}
+                </li>
+              )
+              )
             ))}
           </ul>
         </div>
@@ -26,7 +34,7 @@ class Main extends Component {
           <span className="main__small-box-title">Games Played</span>
 
           <div className="main__small-box-body">
-            <span className="main__user-games">{this.props.events}</span>
+            <span className="main__user-games">{stats.games}</span>
           </div>
         </div>
 
@@ -34,14 +42,16 @@ class Main extends Component {
           <span className="main__small-box-title">Goals</span>
 
           <div className="main__small-box-body">
-            <span className="main__user-games">{this.props.events.goals}</span>
+            <span className="main__user-games">{stats.goals}</span>
           </div>
         </div>
 
         <div className="main__small-box">
-          <div className="main__small-box-title">Top Teammates</div>
+          <span className="main__small-box-title">Effectivness</span>
 
-          <div className="main__small-box-body"></div>
+          <div className="main__small-box-body">
+            <span className="main__user-games">{Math.round(stats.games / stats.goals * 100) / 100 || ''}</span>
+          </div>
         </div>
       </div>
     );
@@ -50,8 +60,7 @@ class Main extends Component {
 
 function mapStateToProps(state) {
   return {
-    userDetails: state.profile.user,
-    events: state.profile.events
+    userDetails: state.login.profileInfo
   };
 }
 
