@@ -1,20 +1,20 @@
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import React, { Component } from 'react';
-import './League.css';
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import React, { Component } from "react";
+import "./League.css";
 
 class League extends Component {
   state = {
     leagues: []
   };
 
-  onClick = async (event) => {
+  onClick = async event => {
     event.preventDefault();
     return this.props.history.push(`/leagues/${event.target.id}`);
   };
 
   async componentDidMount() {
-    const response = await fetch('/api/leagues');
+    const response = await fetch("/api/leagues");
     const data = await response.json();
     this.setState({ leagues: data });
   }
@@ -33,49 +33,49 @@ class League extends Component {
   // }
 
   render() {
-
     let options = {
-      hour: 'numeric',
-      minute: 'numeric',
-      weekday: 'long',
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
+      hour: "numeric",
+      minute: "numeric",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
     };
-    
+
     return (
       <>
-      <ul className="league-list">
+        <ul className="league-list">
+          {this.state.leagues.map(element => (
+            <li className="league-list__item">
+              <a
+                className="league-list__item-name"
+                id={element._id}
+                onClick={this.onClick}
+              >
+                {element.leagueName}
+              </a>
 
-        {this.state.leagues.map((element) => (
-          
-          <li className="league-list__item">
-            <a className="league-list__item-name"
-            id={element._id}
-            onClick={this.onClick}>{element.leagueName}</a>
+              <span className="league-list__item-date">
+                {new Date(element.startDate).toLocaleString("en-US", options)}
+              </span>
 
-            <span className="league-list__item-date">
-              {new Date(element.startDate).toLocaleString("en-US", options)}
+              <span className="league-list__item-users">
+                {element.usersHistory.length}
+              </span>
 
-            </span>
-
-            <span className="league-list__item-users">
-              {element.users.length}
-            </span>
-
-            <button className="league-list__item-join">Join</button>
-{/*             
+              <button className="league-list__item-join">Join</button>
+              {/*             
             <Link
               to="/league/events"
               onClick={() => this.startGame(element._id)}
             >
               Start!
             </Link> */}
-          </li>
-        ))}
-      </ul>
+            </li>
+          ))}
+        </ul>
 
-      {/* <form
+        {/* <form
       className="createLeague"
       name="createLeague"
       onSubmit={this.onSubmit}
