@@ -6,7 +6,7 @@ import './SignIn.css';
 class Login extends Component {
   state = {
     username: '',
-    password: ''
+    password: '',
   }
 
   handleChangeUsername = (e) => {
@@ -30,15 +30,29 @@ class Login extends Component {
 
   render() {
     return (
-      <form className='login'>
+      <form
+        className='login'
+        onSubmit={this.preFetchLogin}>
 
         <label className='login__user-name-label'>Login</label>
-        <input className='login__user-name-input' onChange={this.handleChangeUsername} type="text" placeholder='login' requiredTxt />
+        <input
+          required
+          className='login__user-name-input'
+          onChange={this.handleChangeUsername}
+          type="text"
+          placeholder='login'
+        />
 
         <label className='login__password-label'>Password</label>
-        <input className='login__password-input' onChange={this.handleChangePassword} type="password" placeholder='password' requiredTxt />
+        <input
+          required
+          className='login__password-input'
+          onChange={this.handleChangePassword}
+          type="password"
+          placeholder='password'
+        />
 
-        <button className='login__button' onClick={this.preFetchLogin}>Sign In</button>
+        <button className='login__button' >Sign In</button>
       </form>
     );
   }
