@@ -30,10 +30,8 @@ function splitToTeams(users, teams) {
       participants: [...pair]
     };
     teams.push(team);
-    console.log(`result is ${teams}`);
     splitToTeams(users, teams);
   } else if (users.length === 1) {
-    console.log("users length is 1");
     let team = {
       title: faker.fake("{{random.word}}"),
       participants: [...users]

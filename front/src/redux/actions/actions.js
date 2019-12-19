@@ -14,7 +14,7 @@ export const loginUserAC = (userLoggedIn, profileInfo) => ({
 
 export const FetchToLoginAC = (username, password) => async dispatch => {
   try {
-    console.log("Fetch to Login");
+    // console.log("Fetch to Login");
 
     const userLoggedData = await fetch("/api/login", {
       method: "POST",
@@ -29,7 +29,7 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
     const userLoggedIn = await userLoggedData.json();
 
     // Максим: ниже добавил доп. фетч для запроса инфы по профилю
-    console.log("actioncreator");
+    // console.log("actioncreator");
 
     const getProfile = await fetch("/api/profileinfo", {
       method: "POST",
@@ -39,10 +39,10 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
       body: JSON.stringify({ userID: userLoggedIn })
     });
     const getProfileRes = await getProfile.json();
-    console.log("userLoggedIn");
-    console.log(userLoggedIn);
+    // console.log("userLoggedIn");
+    // console.log(userLoggedIn);
     if (userLoggedIn.error) {
-      console.log("user logges error");
+      // console.log("user logges error");
       alert("Login or password is invalid");
     } else {
       dispatch(loginUserAC(userLoggedIn, getProfileRes));
@@ -86,7 +86,7 @@ export const FetchToSignUpAC = (
 
     if (response.status === 200) {
       const responseJSON = await response.json();
-      console.log(responseJSON);
+      // console.log(responseJSON);
 
       if (responseJSON.errorName) {
         document.getElementById("errorName").innerText = responseJSON.errorName;
