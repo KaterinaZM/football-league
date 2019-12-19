@@ -58,9 +58,10 @@ class App extends Component {
               <Route exact path="/">
                 {userLogged ? (
                   <Redirect to="/profile" />
+
                 ) : (
-                  <Redirect to="/signin" />
-                )}
+                    <Redirect to="/signin" />
+                  )}
               </Route>
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/profile/calendar" component={Profile} />
@@ -86,7 +87,7 @@ function mapDispatchToProps(dispatch) {
 }
 function mapStateToProps(state) {
   return {
-    userLogged: state.userLogged
+    userLogged: state.login.userLogged
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

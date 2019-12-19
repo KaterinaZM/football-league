@@ -31,3 +31,19 @@
   color: #2f8e53;
   background-color: #22252a;
 }
+/* SMARTPHONE */
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    padding: 0 5% 0%;
+    height: 100%;
+  }
+  .menu__item {
+    margin: 1% 0;
+  }
+  .menu__item:first-child {
+    margin-top: 1%;
+  }
+}

@@ -12,6 +12,33 @@ class League extends Component {
     event.preventDefault();
     return this.props.history.push(`/leagues/${event.target.id}`);
   };
+  joinFunc = async (e) => {
+    e.preventDefault();
+    let userID = this.props.userID;
+    let userName = this.props.userName;
+    let currentButton = e.target;
+
+    let leagueName = e.target.parentNode.getElementsByClassName('league-list__item-name')[0].innerText;
+
+
+    let data = await fetch('/api/userinleague', {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ userID, userName, leagueName })
+    })
+    const response = await data.json();
+    console.log(response);
+    console.log(typeof (currentButton.parentNode.getElementsByClassName('league-list__item-users')[0].innerText));
+
+    if (response) {
+      currentButton.style.visibility = "hidden";
+      let count = currentButton.parentNode.getElementsByClassName('league-list__item-users')[0].innerText;
+      currentButton.parentNode.getElementsByClassName('league-list__item-users')[0].innerText = Number(count) + 1
+    }
+
+  }
 
   async componentDidMount() {
     const response = await fetch("/api/leagues");
@@ -62,8 +89,24 @@ class League extends Component {
               <span className="league-list__item-users">
                 {element.usersHistory.length}
               </span>
-
-              <button className="league-list__item-join">Join</button>
+              {(element.users.find((user) => user.userID === this.props.userID)) ?
+                <button
+                  className="league-list__item-join"
+                  style={{ visibility: "hidden" }}
+                >Join</button> :
+                <button
+                  onClick={this.joinFunc}
+                  className="league-list__item-join"
+                >Join</button>
+              }
+              {/* {
+                !element.users.find((user) => user.userID === this.props.userID)
+                &&
+                <button
+                  className="league-list__item-join"
+                  onClick={this.joinFunc}
+                >Join</button>
+              } */}
               {/*             
             <Link
               to="/league/events"
@@ -114,7 +157,8 @@ class League extends Component {
 
 function mapStateToProps(state) {
   return {
-    userID: state.login.userLogged
+    userID: state.login.userLogged,
+    userName: state.login.profileInfo.username
   };
 }
 

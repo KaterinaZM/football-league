@@ -16,7 +16,13 @@ const logoutRouter = require("./routes/logout");
 const eventRouter = require("./routes/event");
 const profileinfoRouter = require("./routes/profileinfo");
 const currentleagueRouter = require("./routes/currentleague");
+<<<<<<< HEAD
 currentleagueRouter;
+=======
+const resultRouter = require("./routes/result");
+const userinleagueRouter = require("./routes/userinleague");
+currentleagueRouter
+>>>>>>> development
 const app = express();
 
 // Подключаем mongoose.
@@ -58,7 +64,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "build")));
 
 // Allows you to use PUT, DELETE with forms.
 app.use(
@@ -90,6 +96,16 @@ app.use("/api/signup", signUpRouter);
 app.use("/api/profileinfo", profileinfoRouter);
 app.use("/api/logout", logoutRouter);
 app.use("/api/event", eventRouter);
+app.use("/api/result", resultRouter);
+app.use("/api/userinleague", userinleagueRouter);
+
+
+// Heroku deployment
+if (process.env.NODE_ENV === 'PRODUCTION') {
+  app.get('*', function(req, res) {
+    res.sendFile( __dirname + '/');
+  });
+  }
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
