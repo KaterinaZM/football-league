@@ -69,6 +69,7 @@ class App extends Component {
               <Route exact path="/profile/leagues" component={Profile} />
               <Route exact path="/profile/playgrounds" component={Profile} />
               <Route exact path="/leagues/:id" component={Profile} />
+              <Route exact path="/league/events" component={Profile} />
             </Switch>
           </div>
         </Router>

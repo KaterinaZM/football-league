@@ -24,13 +24,14 @@ async function fakeLeague() {
     newArr.push({ username: el.username, _id: el._id });
   });
   console.log(newArr);
-  console.log('>>>>>>>>>>5');
-  
+  console.log(">>>>>>>>>>5");
+
   let newLeague = await new League({
-    leagueName: "That one League",
+    leagueName: "That one League 19.12.19",
     creator: firstUser[0]._id,
     startDate: 2020,
     endDate: 2021,
+    usersHistory: [...newArr],
     users: [...newArr],
     teams: [],
     events: [],
