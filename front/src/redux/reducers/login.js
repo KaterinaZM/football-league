@@ -1,8 +1,6 @@
 import { LOGIN_USER, SIGNUP_USER } from "../actions/actionTypes";
 
 const initialState = {
-  loading: false,
-  error: false,
   userLogged: "",
   profileInfo: {
     stats: {

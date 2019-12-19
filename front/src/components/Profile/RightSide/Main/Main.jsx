@@ -4,9 +4,8 @@ import "./Main.css";
 
 class Main extends Component {
   render() {
-    let stats = this.props.userDetails.stats
-    let leagues = this.props.userDetails.leagues
-
+    let stats = this.props.userDetails.stats || {}
+    let leagues = this.props.userDetails.leagues || []
     return (
       <div className="main__wrapper">
         <div className="main__main-box">
