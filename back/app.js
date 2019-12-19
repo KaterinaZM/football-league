@@ -15,6 +15,7 @@ const leagueRouter = require("./routes/league");
 const logoutRouter = require("./routes/logout");
 const profileinfoRouter = require("./routes/profileinfo");
 const currentleagueRouter = require("./routes/currentleague");
+const resultRouter = require("./routes/result");
 currentleagueRouter
 const app = express();
 
@@ -88,6 +89,7 @@ app.use("/api/login", loginRouter);
 app.use("/api/signup", signUpRouter);
 app.use("/api/profileinfo", profileinfoRouter);
 app.use("/api/logout", logoutRouter);
+app.use("/api/result", resultRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
