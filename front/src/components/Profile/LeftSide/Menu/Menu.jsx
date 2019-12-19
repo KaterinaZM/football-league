@@ -16,19 +16,19 @@ export default class Menu extends Component {
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to="/profile/leagues">Browse Leagues</Link>
+              <Link className="menu__link" to="/leagues">Browse Leagues</Link>
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to="/profile/playgrounds">Playgrounds</Link>
+              <Link className="menu__link" to="/playgrounds">Playgrounds</Link>
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to="/profile/calendar">My Events</Link>
+              <Link className="menu__link" to="/calendar">My Events</Link>
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to="/profile/achievements">Achievements</Link>
+              <Link className="menu__link" to="/achievements">Achievements</Link>
             </li>
 
           </ul>
