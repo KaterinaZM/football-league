@@ -6,7 +6,9 @@ const Users = require("../models/user");
 // const News = require("../models/news");
 const splitToTeams = require("../scripts/randomizers");
 
-router.get("api/gamestart", async (req, res) => {
+router.post("/", async (req, res) => {
+  console.log(req.body.leagueID);
+
   let foundLeague = await League.findById(req.body.leagueID);
   foundLeague.started = true;
   splitToTeams(foundLeague.users, foundLeague.teams);
