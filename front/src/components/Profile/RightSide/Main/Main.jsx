@@ -47,10 +47,10 @@ class Main extends Component {
         </div>
 
         <div className="main__small-box">
-          <span className="main__small-box-title">Effectivness</span>
+          <span className="main__small-box-title">GGR</span>
 
           <div className="main__small-box-body">
-            <span className="main__user-games">{Math.round(stats.games / stats.goals * 100) / 100 || ''}</span>
+            <span className="main__user-games">{Math.round(stats.goals / stats.games * 100) / 100 || ''}</span>
           </div>
         </div>
       </div>
