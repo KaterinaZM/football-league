@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const ObjectID = mongoose.Schema.Types.ObjectId;
 
 const userSchema = new mongoose.Schema({
-  username: String,
-  email: String,
+  username: { type: String, unique: true },
+  email: { type: String, unique: true },
   password: String,
   friends: Array,
   leagues: Array,
