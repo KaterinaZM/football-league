@@ -93,7 +93,7 @@ app.use("/api/logout", logoutRouter);
 // Heroku deployment
 if (process.env.NODE_ENV === 'PRODUCTION') {
   app.get('*', function(req, res) {
-    res.sendFile(path.join(__dirname, '/'));
+    res.sendFile( __dirname + '/');
   });
   }
 
