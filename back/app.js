@@ -57,15 +57,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "build")));
 
-// Heroku deployment
-if (process.env.NODE_ENV === 'PRODUCTION') {
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
-}
 // Allows you to use PUT, DELETE with forms.
 app.use(
   methodOverride(function (req, res) {
@@ -95,6 +88,14 @@ app.use("/api/login", loginRouter);
 app.use("/api/signup", signUpRouter);
 app.use("/api/profileinfo", profileinfoRouter);
 app.use("/api/logout", logoutRouter);
+
+
+// Heroku deployment
+if (process.env.NODE_ENV === 'PRODUCTION') {
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
+  }
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

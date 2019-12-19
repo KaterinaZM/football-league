@@ -1,0 +1,9 @@
+{
+  "name": "express-default",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "run": "cd back && npm start",
+    "heroku-postbuild": "cd front && npm install && npm run build && cp -r build ../back/"
+  }
+}
