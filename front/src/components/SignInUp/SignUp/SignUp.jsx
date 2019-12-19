@@ -28,6 +28,7 @@ class SignUp extends Component {
       const userEmail = this.state.email;
       const userPassword = this.state.password;
       await this.props.fetchToSignUp(userName, userEmail, userPassword);
+      // await this.props.history.push('/signin')
     }
 
     render() {
