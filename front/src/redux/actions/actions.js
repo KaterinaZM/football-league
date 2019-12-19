@@ -27,6 +27,8 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
       })
     });
     const userLoggedIn = await userLoggedData.json();
+    console.log(userLoggedIn);
+
     // Максим: ниже добавил доп. фетч для запроса инфы по профилю
     const getProfile = await fetch("api/profileinfo", {
       method: "POST",
@@ -36,26 +38,28 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
       body: JSON.stringify({ userID: userLoggedIn })
     });
     const getProfileRes = await getProfile.json();
+    console.log('userLoggedIn');
     console.log(userLoggedIn);
-
-    dispatch(loginUserAC(userLoggedIn, getProfileRes));
+    if (userLoggedIn.error) {
+      console.log('user logges error');
+      alert('Login or password is invalid')
+    } else {
+      dispatch(loginUserAC(userLoggedIn, getProfileRes));
+    }
   } catch (err) {
     dispatch(loginUserAC(false, false));
-    alert(err);
+    // alert(err);
   }
 };
 export const FetchToLogoutAC = () => async dispatch => {
-  // try {
   const userLogoutData = await fetch("api/logout", {
     credentials: "include"
   });
   const userLogout = await userLogoutData.json();
   if (userLogout) {
     await dispatch(logoutUserAC())
+    await dispatch(loginUserAC(false, false))
   }
-  // } catch (err) {
-  //   alert('Logout' + err)
-  // }
 }
 export const logoutUserAC = () => ({
   type: LOGOUT_USER,
@@ -78,14 +82,29 @@ export const FetchToSignUpAC = (
         password
       })
     });
-    const responseJSON = await response.json();
-    if (responseJSON.validationError) {
-      alert(responseJSON.validationError);
-    } else if (responseJSON.successMessage) {
-      console.log(username, password);
-      await dispatch(FetchToLoginAC(username, password));
+
+    if (response.status === 200) {
+      const responseJSON = await response.json();
+      console.log(responseJSON)
+  
+      if(responseJSON.errorName) {
+        document.getElementById('errorName').innerText = responseJSON.errorName;
+        document.getElementById('userName').style.borderColor = 'red';
+        document.getElementById('errorEmail').innerText = '';
+        document.getElementById('email').style.borderColor = 'white';
+  
+      } else if (responseJSON.errorEmail){
+        document.getElementById('errorEmail').innerText = responseJSON.errorEmail;
+        document.getElementById('userName').style.borderColor = 'white';
+        document.getElementById('email').style.borderColor = 'red';
+        document.getElementById('errorName').innerText = '';
+      } else if (responseJSON.successMessage) {
+          console.log(username, password);
+          await dispatch(FetchToLoginAC(username, password));
+        }
     }
+    
   } catch (err) {
-    alert(err);
+    //alert(err);
   }
 };

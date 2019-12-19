@@ -5,8 +5,10 @@
   list-style-type: none;
   color:rgba(222, 220, 220, 1);
   background:rgba(37, 37, 37, .8);
+  // height: 51%;
   box-sizing:border-box;
   overflow: auto;
+  
 
   &__item {
     display: flex;
@@ -26,11 +28,15 @@
   }
 
   &__item-name {
-    width: 35%;
+    width: 30%;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__item-date {
-    width: 25%;
+    width: 40%;
   }
 
   &__item-users {
@@ -38,11 +44,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 5%;
-  }
-
-  &__item-details {
-    width: 10%;
+    width: 2%;
   }
 
   &__item-join {

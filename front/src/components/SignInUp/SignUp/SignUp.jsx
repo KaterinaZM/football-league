@@ -34,11 +34,11 @@ class SignUp extends Component {
       return (
             <form className='sign-up'>
 
-                <label className='sign-up__user-name-label'>Login</label>
-                <input className='sign-up__user-name-input' onChange={this.handleChangeUsername} type='text' placeholder='login' required />
+                <label className='sign-up__user-name-label' >Login <span id='errorName'></span></label>
+                <input className='sign-up__user-name-input' id='userName' onChange={this.handleChangeUsername} type='text' placeholder='login' required />
 
-                <label className='sign-up__email-label' >Email</label>
-                <input className='sign-up__email-input' onChange={this.handleChangeEmail} type='text' placeholder='email' required />
+                <label className='sign-up__email-label' >Email <span id='errorEmail'></span></label>
+                <input className='sign-up__email-input' id='email' onChange={this.handleChangeEmail} type='text' placeholder='email' required />
 
                 <label className='sign-up__password-label' >Password</label>
                 <input className='sign-up__password-input' onChange={this.handleChangePassword} type='password' placeholder='password' required />

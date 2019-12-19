@@ -7,7 +7,13 @@ const {
   randomPair,
   randomInt
 } = require("../scripts/randomizers");
+const News = require("../models/news");
 // const sgMail = require('@sendgrid/mail');
+
+router.get("/news", async (req, res) => {
+  const news = await News.find();
+  res.send(JSON.stringify(news));
+});
 
 router.get("/leagues", async (req, res) => {
   const leagues = await League.find();
@@ -35,7 +41,11 @@ router.post("/newleague", async (req, res) => {
     leagueStats: [],
     started: false
   }).save();
-  console.log(">>>>>>>>>>>222222");
+
+  let newNews = await new News({
+    title: "New League",
+    msg: req.body.leagueName + " " + "was created"
+  }).save();
 
   let creatorUser = await Users.findById(req.body.creator);
   creatorUser.leagues.push(newLeague);
@@ -50,16 +60,12 @@ router.post("/newleague", async (req, res) => {
 
 router.post("/leagues/:id", async (req, res) => {
   const id = req.body.id;
-  console.log(">>>>>>>>>7777");
-
   const league = await League.findById({ _id: id });
   const userPool = league;
   res.send(JSON.stringify(userPool));
 });
 
 router.post("/newplayer", async (req, res) => {
-  console.log(">>>>>>>>333333333");
-
   let leagueToJoin = await League.findById(req.body.leagueID);
   let reqUser = await Users.findById(req.body.userID);
   leagueToJoin.users.push(reqUser._id).save();
