@@ -20,7 +20,6 @@ export default class ViewLeague extends Component {
       body: JSON.stringify({ id })
     });
     const data = await response.json();
-    console.log(data);
     this.setState({
       userPool: data.usersHistory,
       teamPool: data.teams,
@@ -30,43 +29,41 @@ export default class ViewLeague extends Component {
   }
   async startGame(id) {
     let request = await fetch("/api/gamestart", {
-      method: "GET",
+      method: "POST",
       headers: {
         "content-type": "application/json"
       },
-      body: JSON.stringify({ id })
+      body: JSON.stringify({ leagueID: id })
     });
   }
 
   render() {
     return (
       <>
-        <tr className="view-league-list-td">
-          <td>
-            <h2 className="view-league-list">Users</h2>
-            <ul className="view-league-list">
-              {this.state.userPool.length > 0 ? (
-                this.state.userPool.map(element => (
-                  <li className="view-league-list__item">{element.username}</li>
-                ))
-              ) : (
-                <li>No players yet :(</li>
-              )}
-            </ul>
-          </td>
-          <td>
-            <h2 className="view-league-list">Teams</h2>
-            <ul className="view-league-list">
-              {this.state.teamPool.length > 0 ? (
-                this.state.teamPool.map(element => (
-                  <li className="view-league-list__item"> {element.title} </li>
-                ))
-              ) : (
-                <li>No teams yet :(</li>
-              )}
-            </ul>
-          </td>
-        </tr>
+        <td>
+          <h2 className="view-league-list">Users</h2>
+          <ul className="view-league-list">
+            {this.state.userPool.length > 0 ? (
+              this.state.userPool.map(element => (
+                <li className="view-league-list__item">{element.username}</li>
+              ))
+            ) : (
+              <li>No players yet :(</li>
+            )}
+          </ul>
+        </td>
+        <td>
+          <h2 className="view-league-list">Teams</h2>
+          <ul className="view-league-list">
+            {this.state.teamPool.length > 0 ? (
+              this.state.teamPool.map(element => (
+                <li className="view-league-list__item"> {element.title} </li>
+              ))
+            ) : (
+              <li>No teams yet :(</li>
+            )}
+          </ul>
+        </td>
         {this.state.userPool.length > 0 && !this.state.started ? (
           <Link
             className="view-league-list__button"

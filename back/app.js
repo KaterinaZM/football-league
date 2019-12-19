@@ -81,7 +81,7 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/", indexRouter);
-app.use("/", gamestartRouter);
+app.use("/api/gamestart", gamestartRouter);
 app.use("/api", leagueRouter);
 app.use("/api/currentleague", currentleagueRouter);
 app.use("/api/login", loginRouter);

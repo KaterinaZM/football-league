@@ -27,10 +27,11 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
       })
     });
     const userLoggedIn = await userLoggedData.json();
-    console.log(userLoggedIn);
 
     // Максим: ниже добавил доп. фетч для запроса инфы по профилю
-    const getProfile = await fetch("api/profileinfo", {
+    console.log("actioncreator");
+
+    const getProfile = await fetch("/api/profileinfo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -38,11 +39,11 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
       body: JSON.stringify({ userID: userLoggedIn })
     });
     const getProfileRes = await getProfile.json();
-    console.log('userLoggedIn');
+    console.log("userLoggedIn");
     console.log(userLoggedIn);
     if (userLoggedIn.error) {
-      console.log('user logges error');
-      alert('Login or password is invalid')
+      console.log("user logges error");
+      alert("Login or password is invalid");
     } else {
       dispatch(loginUserAC(userLoggedIn, getProfileRes));
     }
@@ -52,15 +53,15 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
   }
 };
 export const FetchToLogoutAC = () => async dispatch => {
-  const userLogoutData = await fetch("api/logout", {
+  const userLogoutData = await fetch("/api/logout", {
     credentials: "include"
   });
   const userLogout = await userLogoutData.json();
   if (userLogout) {
-    await dispatch(logoutUserAC())
-    await dispatch(loginUserAC(false, false))
+    await dispatch(logoutUserAC());
+    await dispatch(loginUserAC(false, false));
   }
-}
+};
 export const logoutUserAC = () => ({
   type: LOGOUT_USER,
   userLogged: false
@@ -85,25 +86,24 @@ export const FetchToSignUpAC = (
 
     if (response.status === 200) {
       const responseJSON = await response.json();
-      console.log(responseJSON)
-  
-      if(responseJSON.errorName) {
-        document.getElementById('errorName').innerText = responseJSON.errorName;
-        document.getElementById('userName').style.borderColor = 'red';
-        document.getElementById('errorEmail').innerText = '';
-        document.getElementById('email').style.borderColor = 'white';
-  
-      } else if (responseJSON.errorEmail){
-        document.getElementById('errorEmail').innerText = responseJSON.errorEmail;
-        document.getElementById('userName').style.borderColor = 'white';
-        document.getElementById('email').style.borderColor = 'red';
-        document.getElementById('errorName').innerText = '';
+      console.log(responseJSON);
+
+      if (responseJSON.errorName) {
+        document.getElementById("errorName").innerText = responseJSON.errorName;
+        document.getElementById("userName").style.borderColor = "red";
+        document.getElementById("errorEmail").innerText = "";
+        document.getElementById("email").style.borderColor = "white";
+      } else if (responseJSON.errorEmail) {
+        document.getElementById("errorEmail").innerText =
+          responseJSON.errorEmail;
+        document.getElementById("userName").style.borderColor = "white";
+        document.getElementById("email").style.borderColor = "red";
+        document.getElementById("errorName").innerText = "";
       } else if (responseJSON.successMessage) {
-          console.log(username, password);
-          await dispatch(FetchToLoginAC(username, password));
-        }
+        console.log(username, password);
+        await dispatch(FetchToLoginAC(username, password));
+      }
     }
-    
   } catch (err) {
     //alert(err);
   }

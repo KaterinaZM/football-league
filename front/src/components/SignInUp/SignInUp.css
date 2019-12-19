@@ -28,3 +28,12 @@
   text-decoration: none;
   border-bottom: 2px solid #2f8e53;
 }
+/* SMARTPHONE */
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .sign-in-up__menu {
+    width: 80%;
+  }
+  .sign-in-up__menu-item {
+    width: 100%;
+  }
+}

@@ -6,16 +6,17 @@ import "./ViewLeague.css";
 
 class OngoingLeague extends Component {
   async componentDidMount() {
-    return this.props.userLogged;
+    let currentLeague = this.props.userLogged;
+    console.log(currentLeague);
   }
 
   render() {
     return (
       <>
         <ul className="view-league-list">
-          {this.state.userPool.map(element => (
+          {/* {this.state.userPool.map(element => (
             <li className="view-league-list__item"> {element.username} </li>
-          ))}
+          ))} */}
         </ul>
         <button className="view-league-list__button">Start games</button>
       </>
@@ -25,7 +26,7 @@ class OngoingLeague extends Component {
 
 function mapStateToProps(state) {
   return {
-    userLogged: state.userLogged
+    userLogged: state.login.profileInfo
   };
 }
 

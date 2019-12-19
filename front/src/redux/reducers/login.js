@@ -8,20 +8,21 @@ const initialState = {
       wins: "",
       goals: ""
     },
+    ongoingLeague: "",
     leagues: [
       {
         events: [
           {
-            name: '',
-            date: '',
-          },
+            name: "",
+            date: ""
+          }
         ]
-      },
+      }
     ]
-  },
+  }
 };
 
-export default function (state = initialState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case LOGIN_USER: {
       return {
