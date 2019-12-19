@@ -11,11 +11,17 @@ const indexRouter = require("./routes/index");
 const gamestartRouter = require("./routes/gamestart");
 const loginRouter = require("./routes/login");
 const signUpRouter = require("./routes/signup");
+const leagueRouter = require("./routes/league");
+const logoutRouter = require("./routes/logout");
+const profileinfoRouter = require("./routes/profileinfo");
+const currentleagueRouter = require("./routes/currentleague");
+currentleagueRouter
 const app = express();
 
 // Подключаем mongoose.
 const mongoose = require("mongoose");
 require("dotenv").config();
+
 // задать имя базы монго
 // mongoose.connect(process.env.ATLAS_URL, {
 //   useNewUrlParser: true,
@@ -35,7 +41,10 @@ app.use(
     key: "user_sid",
     secret: "oh klahoma",
     resave: false,
-    saveUninitialized: false
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000,
+    }
   })
 );
 
@@ -61,11 +70,24 @@ app.use(
     }
   })
 );
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
 app.use("/", indexRouter);
 app.use("/", gamestartRouter);
-app.use("/api/login", loginRouter)
-app.use("/api/signup", signUpRouter)
+app.use("/api", leagueRouter);
+app.use("/api/currentleague", currentleagueRouter);
+app.use("/api/login", loginRouter);
+app.use("/api/signup", signUpRouter);
+app.use("/api/profileinfo", profileinfoRouter);
+app.use("/api/logout", logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

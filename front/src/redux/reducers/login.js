@@ -1,7 +1,24 @@
-import { LOGIN_USER, SIGNUP_USER } from '../actions/actionTypes';
+import { LOGIN_USER, SIGNUP_USER } from "../actions/actionTypes";
 
 const initialState = {
-  userLogged: ''
+  userLogged: "",
+  profileInfo: {
+    stats: {
+      games: "",
+      wins: "",
+      goals: ""
+    },
+    leagues: [
+      {
+        events: [
+          {
+            name: '',
+            date: '',
+          },
+        ]
+      },
+    ]
+  },
 };
 
 export default function (state = initialState, action) {
@@ -9,7 +26,8 @@ export default function (state = initialState, action) {
     case LOGIN_USER: {
       return {
         ...state,
-        userLogged: action.userLogged
+        userLogged: action.userLogged,
+        profileInfo: action.profileInfo
       };
     }
     case SIGNUP_USER: {

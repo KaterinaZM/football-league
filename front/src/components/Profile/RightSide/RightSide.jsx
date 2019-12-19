@@ -1,54 +1,24 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import './RightSide.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import Main from "./Main/Main";
+import League from "./League/League";
+import CreateLeague from "./League/CreateLeague";
+import Playgrounds from "./Playgrounds/Playgrounds";
+import ViewLeague from "./League/ViewLeague";
+import OngoingLeague from "./League/OngoingLeague";
+import "./RightSide.css";
 
 class RightSide extends Component {
   render() {
     return (
       <div className="right-side">
-
-        <div className="right-side__wrapper">
-
-          <div className="right-side__main-box">
-            <span className="right-side__main-box-title">Last News</span>
-          </div>
-
-          <div className="right-side__events">
-            <span className="right-side__events-title">Next Events</span>
-
-            <div className="right-side__events-body">
-
-            </div>
-          </div>
-
-          <div className="right-side__small-box">
-            <span className="right-side__small-box-title">Games Played</span>
-
-            <div className="right-side__small-box-body">
-              <span className="right-side__user-games">{this.props.userDetails.events.length}</span>
-            </div>
-          </div>
-
-          <div className="right-side__small-box">
-            <span className="right-side__small-box-title">Goals</span>
-
-            <div className="right-side__small-box-body">
-              <span className="right-side__user-games">
-                {this.props.userDetails.events[0].goals}
-              </span>
-            </div>
-          </div>
-
-          <div className="right-side__small-box">
-            <div className="right-side__small-box-title">Top Teammates</div>
-
-            <div className="right-side__small-box-body">
-
-            </div>
-          </div>
-
-        </div>
-
+        <Route exact path="/profile" component={Main} />
+        <Route exact path="/profile/calendar" component={CreateLeague} />
+        <Route exact path="/profile/playgrounds" component={Playgrounds} />
+        <Route exact path="/leagues/:id" component={ViewLeague} />
+        <Route exact path="/profile/leagues" component={League} />
+        <Route exact path="/league/events" component={OngoingLeague} />
       </div>
     );
   }

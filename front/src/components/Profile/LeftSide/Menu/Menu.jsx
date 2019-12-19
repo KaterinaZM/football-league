@@ -12,23 +12,23 @@ export default class Menu extends Component {
         <nav>
           <ul className="menu__list">
             <li className="menu__item">
-              <Link className="menu__link" to='/profile'>Main</Link>
+              <Link className="menu__link" to="/profile">Main</Link>
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to='/profile/teammates'>Teammates</Link>
+              <Link className="menu__link" to="/profile/leagues">Browse Leagues</Link>
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to='/profile/playgrounds'>Playgrounds</Link>
+              <Link className="menu__link" to="/profile/playgrounds">Playgrounds</Link>
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to='/profile/calendar'>Calendar</Link>
+              <Link className="menu__link" to="/profile/calendar">My Events</Link>
             </li>
 
             <li className="menu__item">
-              <Link className="menu__link" to='/profile/achievements'>Achievements</Link>
+              <Link className="menu__link" to="/profile/achievements">Achievements</Link>
             </li>
 
           </ul>

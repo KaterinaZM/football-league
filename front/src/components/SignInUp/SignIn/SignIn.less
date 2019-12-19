@@ -1,0 +1,40 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  height: 50%;
+
+  &__user-name-label, &__password-label {
+    color: rgba(222, 220, 220, 1);
+    text-transform: uppercase;
+    padding-left: 5%;
+    margin-bottom: 1%;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;  
+  }
+
+  &__user-name-input, &__password-input {
+    color: rgba(222, 220, 220, 1);
+    padding: 2% 5%;
+    background:none;
+    border: 2px solid rgba(222, 220, 220, 1);
+    border-radius: 5px;
+    margin-bottom: 5%;
+    outline: none;
+    
+    &::placeholder {
+      color: rgba(222, 220, 220, 1);
+    }
+  }
+
+  &__button {
+    color: rgba(222, 220, 220, 1);
+    padding: 2% 5%;
+    border:none;
+    background:rgba(45, 144, 87, 1);
+    border-radius: 5px;
+    margin-bottom: 5%;
+    outline: none;
+  }
+}

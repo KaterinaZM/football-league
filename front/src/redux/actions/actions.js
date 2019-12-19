@@ -1,5 +1,4 @@
-import { LOGIN_USER, GET_USER_DETAILS } from './actionTypes';
-
+import { LOGIN_USER, GET_USER_DETAILS, LOGOUT_USER } from "./actionTypes";
 
 export default function getUserDetails(id) {
   return {
@@ -7,19 +6,20 @@ export default function getUserDetails(id) {
     id
   };
 }
-export const loginUserAC = (userLoggedIn) => ({
+export const loginUserAC = (userLoggedIn, profileInfo) => ({
   type: LOGIN_USER,
-  userLogged: userLoggedIn
+  userLogged: userLoggedIn,
+  profileInfo: profileInfo
 });
 
-export const FetchToLoginAC = (username, password) => async (dispatch) => {
+export const FetchToLoginAC = (username, password) => async dispatch => {
   try {
-    console.log('Fetch to Login');
+    console.log("Fetch to Login");
 
-    const userLoggedData = await fetch('/api/login', {
-      method: 'POST',
+    const userLoggedData = await fetch("/api/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username,
@@ -27,20 +27,54 @@ export const FetchToLoginAC = (username, password) => async (dispatch) => {
       })
     });
     const userLoggedIn = await userLoggedData.json();
-    dispatch(loginUserAC(userLoggedIn));
     console.log(userLoggedIn);
 
+    // Максим: ниже добавил доп. фетч для запроса инфы по профилю
+    const getProfile = await fetch("api/profileinfo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ userID: userLoggedIn })
+    });
+    const getProfileRes = await getProfile.json();
+    console.log('userLoggedIn');
+    console.log(userLoggedIn);
+    if (userLoggedIn.error) {
+      console.log('user logges error');
+      alert('Login or password is invalid')
+    } else {
+      dispatch(loginUserAC(userLoggedIn, getProfileRes));
+    }
   } catch (err) {
+    dispatch(loginUserAC(false, false));
     // alert(err);
   }
 };
-
-export const FetchToSignUpAC = (username, email, password) => async (dispatch) => {
+export const FetchToLogoutAC = () => async dispatch => {
+  const userLogoutData = await fetch("api/logout", {
+    credentials: "include"
+  });
+  const userLogout = await userLogoutData.json();
+  if (userLogout) {
+    await dispatch(logoutUserAC())
+    await dispatch(loginUserAC(false, false))
+  }
+}
+export const logoutUserAC = () => ({
+  type: LOGOUT_USER,
+  userLogged: false
+});
+export const FetchToSignUpAC = (
+  username,
+  email,
+  password
+) => async dispatch => {
   try {
-    const response = await fetch('/api/signup', {
-      method: 'POST',
+    const response = await fetch("/api/signup", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username,
@@ -48,14 +82,29 @@ export const FetchToSignUpAC = (username, email, password) => async (dispatch) =
         password
       })
     });
-    const responseJSON = await response.json();
-    if (responseJSON.validationError) {
-      alert(responseJSON.validationError);
-    } else if (responseJSON.successMessage) {
-      console.log(username, password);
-      await dispatch(FetchToLoginAC(username, password));
+
+    if (response.status === 200) {
+      const responseJSON = await response.json();
+      console.log(responseJSON)
+  
+      if(responseJSON.errorName) {
+        document.getElementById('errorName').innerText = responseJSON.errorName;
+        document.getElementById('userName').style.borderColor = 'red';
+        document.getElementById('errorEmail').innerText = '';
+        document.getElementById('email').style.borderColor = 'white';
+  
+      } else if (responseJSON.errorEmail){
+        document.getElementById('errorEmail').innerText = responseJSON.errorEmail;
+        document.getElementById('userName').style.borderColor = 'white';
+        document.getElementById('email').style.borderColor = 'red';
+        document.getElementById('errorName').innerText = '';
+      } else if (responseJSON.successMessage) {
+          console.log(username, password);
+          await dispatch(FetchToLoginAC(username, password));
+        }
     }
+    
   } catch (err) {
-    alert(err)
+    //alert(err);
   }
-}
+};

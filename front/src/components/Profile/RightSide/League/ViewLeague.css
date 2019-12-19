@@ -1,0 +1,32 @@
+.view-league-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  list-style-type: none;
+  color: #dedcdc;
+  background: rgba(37, 37, 37, 0.8);
+  box-sizing: border-box;
+  width: 100%;
+  height: 96.5%;
+}
+.view-league-list__item {
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  justify-content: space-between;
+  margin-bottom: 1%;
+  padding: 0.5% 2%;
+}
+.view-league-list__button {
+  background: #2f8e53;
+  border: none;
+}
+
+/* temp class added by maxim */
+.view-league-list-td {
+  display: flex;
+
+  flex-direction: row;
+  justify-content: space-evenly;
+}
