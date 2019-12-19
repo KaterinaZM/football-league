@@ -24,7 +24,7 @@ class Login extends Component {
     await this.props.fetchToLogin(userName, userPassword);
     console.log(this.props);
 
-    // this.props.history.push('/profile')
+    this.props.history.push('/profile')
   }
 
   render() {
