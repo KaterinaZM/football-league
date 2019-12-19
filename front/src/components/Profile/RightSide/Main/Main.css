@@ -102,8 +102,30 @@
   color: #dedcdc;
   background-color: #22252a;
 }
-.main__user-games {
-  font-size: 110px;
-  font-weight: 900;
-  color: #2f8e53;
+/* SMARTPHONE */
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .main__wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    padding: 0 2%;
+  }
+  .main__main-box {
+    display: flex;
+    width: 100%;
+  }
+  .main__events {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 2% 0 0;
+  }
+  .main__small-box {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: 2% 0 0;
+  }
 }
