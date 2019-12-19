@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "cd back && npm start",
+    "start": "cd back && npm install && npm start",
     "heroku-postbuild": "cd front && npm install && npm run build && cp -r build ../back/"
   }
 }
