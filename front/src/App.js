@@ -20,7 +20,7 @@ class App extends Component {
 
     let result = await response.json();
     if (result) {
-      const getProfile = await fetch("api/profileinfo", {
+      const getProfile = await fetch("/api/profileinfo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
