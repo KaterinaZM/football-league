@@ -24,7 +24,7 @@ class Login extends Component {
     await this.props.fetchToLogin(userName, userPassword);
     //window.location.replace('/profile')
     console.log(this.props);
-    
+
     this.props.history.push('/profile')
   }
 
@@ -33,10 +33,10 @@ class Login extends Component {
       <form className='login'>
 
         <label className='login__user-name-label'>Login</label>
-        <input className='login__user-name-input' onChange={this.handleChangeUsername} type="text" placeholder='login' required />
+        <input className='login__user-name-input' onChange={this.handleChangeUsername} type="text" placeholder='login' requiredTxt />
 
         <label className='login__password-label'>Password</label>
-        <input className='login__password-input' onChange={this.handleChangePassword} type="password" placeholder='password' required />
+        <input className='login__password-input' onChange={this.handleChangePassword} type="password" placeholder='password' requiredTxt />
 
         <button className='login__button' onClick={this.preFetchLogin}>Sign In</button>
       </form>

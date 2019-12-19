@@ -48,7 +48,7 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
     }
   } catch (err) {
     dispatch(loginUserAC(false, false));
-    alert(err);
+    // alert(err);
   }
 };
 export const FetchToLogoutAC = () => async dispatch => {
@@ -90,6 +90,6 @@ export const FetchToSignUpAC = (
       await dispatch(FetchToLoginAC(username, password));
     }
   } catch (err) {
-    alert(err);
+    //alert(err);
   }
 };
