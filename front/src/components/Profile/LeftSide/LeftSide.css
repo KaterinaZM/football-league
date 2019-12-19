@@ -10,3 +10,15 @@
   -khtml-user-select: none;
   user-select: none;
 }
+/* SMARTPHONE */
+@media only screen and (min-width: 320px) and (max-width: 768px) {
+  .left-side {
+    display: flex;
+    flex-direction: column;
+    background-color: #202123;
+    color: #dedcdc;
+    width: 100%;
+    height: 100%;
+    padding: 1%;
+  }
+}

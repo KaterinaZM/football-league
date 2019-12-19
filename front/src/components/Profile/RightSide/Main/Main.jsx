@@ -18,19 +18,16 @@ class Main extends Component {
 
     return (
       <div className="main__wrapper">
+
         <div className="main__main-box">
           <span className="main__main-box-title">Latest News</span>
-          <div className="main__small-box-body">
-            <span className="main__user-games">
-              <ul>
-                {this.state.news.map(element => (
-                  <li>
-                    {element.title} <br /> {element.msg}
-                  </li>
-                ))}
-              </ul>
-            </span>
-          </div>
+            <ul className="main__main-box-news-list">
+              {this.state.news.map(element => (
+                <li className="main__main-box-news-item">
+                  <span className="main__main-box-news-item-title">{element.title}</span>: {element.msg}
+                </li>
+              ))}
+            </ul>
         </div>
 
         <div className="main__events">
