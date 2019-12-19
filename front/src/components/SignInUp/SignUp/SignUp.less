@@ -9,6 +9,7 @@
     text-transform: uppercase;
     padding-left: 5%;
     margin-bottom: 1%;
+    
   }
 
   &__user-name-input, &__email-input, &__password-input {
@@ -34,4 +35,18 @@
     margin-bottom: 5%;
     outline: none;
   }
+}
+
+/* SMARTPHONE */   
+@media only screen 
+    and (min-width: 320px) 
+    and (max-width: 768px) {
+ 
+        .sign-up {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          width: 80%;
+          height: 30%;
+        }
 }
