@@ -16,13 +16,8 @@ const logoutRouter = require("./routes/logout");
 const eventRouter = require("./routes/event");
 const profileinfoRouter = require("./routes/profileinfo");
 const currentleagueRouter = require("./routes/currentleague");
-<<<<<<< HEAD
-currentleagueRouter;
-=======
 const resultRouter = require("./routes/result");
 const userinleagueRouter = require("./routes/userinleague");
-currentleagueRouter
->>>>>>> development
 const app = express();
 
 // Подключаем mongoose.
@@ -99,13 +94,12 @@ app.use("/api/event", eventRouter);
 app.use("/api/result", resultRouter);
 app.use("/api/userinleague", userinleagueRouter);
 
-
 // Heroku deployment
-if (process.env.NODE_ENV === 'PRODUCTION') {
-  app.get('*', function(req, res) {
-    res.sendFile( __dirname + '/');
+if (process.env.NODE_ENV === "PRODUCTION") {
+  app.get("*", function(req, res) {
+    res.sendFile(__dirname + "/");
   });
-  }
+}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
