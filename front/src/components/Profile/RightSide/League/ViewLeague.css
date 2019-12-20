@@ -40,3 +40,21 @@
   height: 10%;
   color: #dedcdc;
 }
+/* SMALL SMARTPHONE */
+@media only screen and (min-width: 0px) and (max-width: 320px) {
+  .view-league__players-title {
+    padding-top: 60px;
+  }
+}
+/* SMARTPHONE */
+@media only screen and (min-width: 320px) and (max-width: 500px) {
+  .view-league__players-title {
+    padding-top: 60px;
+  }
+}
+/* SMARTPHONE */
+@media only screen and (min-width: 500px) and (max-width: 1100px) {
+  .view-league__players-title {
+    padding-top: 60px;
+  }
+}
