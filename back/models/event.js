@@ -7,7 +7,7 @@ const eventSchema = new mongoose.Schema({
   date: Date,
   teams: Array,
   eventStats: Array,
-  winner: ObjectID
+  winner: Object
 });
 
 module.exports = mongoose.model("Event", eventSchema);
