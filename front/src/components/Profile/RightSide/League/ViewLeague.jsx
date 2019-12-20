@@ -39,45 +39,44 @@ class ViewLeague extends Component {
   }
 
   render() {
+
+    let count = 0;
     return (
-      <>
-        <td>
-          <h2 className="view-league-list">Users</h2>
-          <ul className="view-league-list">
+      <div className="view-league">
+          <h2 className="view-league__players-title">Users:</h2>
+          <ul className="view-league__players-list">
+            
             {this.state.userPool.length > 0 ? (
-              this.state.userPool.map(element => (
-                <li className="view-league-list__item">{element.username}</li>
+              this.state.userPool.map((element, idx) => (
+              <li className="view-league__players-list-item">{ idx + 1}. {element.username}</li>
               ))
             ) : (
-              <li>No players yet :(</li>
+              <li>No players yet</li>
             )}
           </ul>
-        </td>
-        <td>
-          <h2 className="view-league-list">Teams</h2>
-          <ul className="view-league-list">
+
+          <h2 className="view-league__teams-title">Teams:</h2>
+          <ul className="view-league__teams-list">
             {this.state.teamPool.length > 0 ? (
-              this.state.teamPool.map(element => (
-                <li className="view-league-list__item"> {element.title} </li>
+              this.state.teamPool.map((element, idx) => (
+                <li className="view-league__teams-list-item">{ idx + 1}. {element.title} </li>
               ))
             ) : (
-              <li>No teams yet :(</li>
+              <li>No teams yet</li>
             )}
           </ul>
-        </td>
+
         {this.state.userPool.length > 0 ? (
           <Link
             id={this.state.leagueID}
-            className="view-league-list__button"
+            className="view-league__button"
             to="/league/events"
             onClick={() => this.startGame(this.state.leagueID)}
           >
             Start!
           </Link>
-        ) : (
-          <br></br>
-        )}
-      </>
+        ) : ( null )}
+      </div>
     );
   }
 }
