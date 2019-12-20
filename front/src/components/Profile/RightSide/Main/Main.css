@@ -103,7 +103,7 @@
   background-color: #22252a;
 }
 .main__user-games {
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 900;
   color: #2f8e53;
 }
@@ -135,6 +135,11 @@
     width: 31%;
     margin: 5% 0 0;
   }
+  .main__user-games {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #2f8e53;
+  }
 }
 /* SMARTPHONE */
 @media only screen and (min-width: 320px) and (max-width: 500px) {
@@ -163,5 +168,10 @@
     flex-direction: column;
     width: 31%;
     margin: 5% 0 0;
+  }
+  .main__user-games {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #2f8e53;
   }
 }
