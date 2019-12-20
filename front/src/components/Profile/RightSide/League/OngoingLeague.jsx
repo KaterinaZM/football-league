@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import "./ViewLeague.css";
+import "./OngoingLeague.css";
 
 class OngoingLeague extends Component {
   state = {
@@ -114,7 +114,7 @@ class OngoingLeague extends Component {
   render() {
     return (
       <>
-        <ul className="view-league-list">
+        <ul className="ongoing-league">
           {this.state.events.length > 0 ? (
             this.state.events.map((element, index) => {
               console.log(element);
@@ -125,12 +125,18 @@ class OngoingLeague extends Component {
                   className="events"
                   id={element._id}
                 >
-                  <li className="view-league-list__item">
-                    {element.teams[0].title} vs. {element.teams[1].title}
-                  </li>
-                  <input name="team1" type="text" />
-                  <input name="team2" type="text" />
-                  <button>Submit</button>
+                  <div className="ongoing-league__main-wrapper">
+                    <div className="ongoing-league__wrapper">
+                    <span className="ongoing-league__item-first">{element.teams[0].title}</span> <span className="ongoing-league__item">vs.</span> <span className="ongoing-league__item-last">{element.teams[1].title}</span>
+                    </div>
+
+                    <div className="ongoing-league__wrapper">
+                    <input className="ongoing-league__input" name="team1" type="text" />&nbsp;<input className="ongoing-league__input" name="team2" type="text" />
+                    </div>
+                    
+                    <button>Submit</button>
+                  </div>
+                  
                 </form>
               ) : (
                 <li className="view-league-list__item">
@@ -143,7 +149,7 @@ class OngoingLeague extends Component {
           )}
         </ul>
         <button
-          className="view-league-list__button"
+          className="ongoing-league__button"
           onClick={this.generateNew.bind(this)}
         >
           Submit scores

@@ -1,4 +1,18 @@
-.view-league-list {
+.view-league {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+}
+.view-league__players-title,
+.view-league__teams-title {
+  width: 100%;
+  color: #dedcdc;
+  background: rgba(37, 37, 37, 0.8);
+}
+.view-league__players-list,
+.view-league__teams-list {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -6,27 +20,23 @@
   list-style-type: none;
   color: #dedcdc;
   background: rgba(37, 37, 37, 0.8);
-  box-sizing: border-box;
   width: 100%;
-  height: 96.5%;
+  height: 45%;
 }
-.view-league-list__item {
+.view-league__players-list-item,
+.view-league__teams-list-item {
   display: flex;
-  flex-direction: row;
-  width: 30%;
-  justify-content: space-between;
+  width: 20%;
   margin-bottom: 1%;
   padding: 0.5% 2%;
 }
-.view-league-list__button {
+.view-league__button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background: #2f8e53;
   border: none;
-}
-
-/* temp class added by maxim */
-.view-league-list-td {
-  display: flex;
-
-  flex-direction: row;
-  justify-content: space-evenly;
+  height: 10%;
+  color: #dedcdc;
 }
