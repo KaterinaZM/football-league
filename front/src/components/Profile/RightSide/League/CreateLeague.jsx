@@ -29,18 +29,18 @@ class CreateLeague extends Component {
     console.log(this.props);
 
     return (
-        <form name="createLeague" onSubmit={this.onSubmit}>
-          <label>Create New League</label>
+        <form className='createLeague' name="createLeague" onSubmit={this.onSubmit}>
+          <h2 className='createLeague__label'>Create New League</h2>
 
-          <label>Your League name </label>
-          <input name="leagueName" type="text" required />
+          <label className='createLeague__label'>Your League name </label>
+          <input className='createLeague__input' name="leagueName" type="text" required />
           
-          <label>Start date: </label>
-          <input name="startDate" type="datetime-local" required />
+          <label className='createLeague__label'>Start date: </label>
+          <input className='createLeague__input' name="startDate" type="datetime-local" required />
 
-          <label>End date: </label>
-          <input name="endDate" type="datetime-local" required />
-          <button >Create</button>
+          <label className='createLeague__label'>End date: </label>
+          <input className='createLeague__input' name="endDate" type="datetime-local" required />
+          <button className='createLeague__button'>Create</button>
         </form>
     );
   }

@@ -95,9 +95,10 @@ app.use("/api/result", resultRouter);
 app.use("/api/userinleague", userinleagueRouter);
 
 // Heroku deployment
-if (process.env.NODE_ENV === "PRODUCTION") {
-  app.get("*", function(req, res) {
-    res.sendFile(__dirname + "/");
+
+if (process.env.NODE_ENV === 'PRODUCTION') {
+  app.get('*', function(req, res) {
+    res.sendFile( __dirname + '/build/index.html');
   });
 }
 
