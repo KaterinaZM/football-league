@@ -102,30 +102,76 @@
   color: #dedcdc;
   background-color: #22252a;
 }
-/* SMARTPHONE */
-@media only screen and (min-width: 320px) and (max-width: 768px) {
+.main__user-games {
+  font-size: 4rem;
+  font-weight: 900;
+  color: #2f8e53;
+}
+/* SMALL SMARTPHONE */
+@media only screen and (min-width: 0px) and (max-width: 320px) {
   .main__wrapper {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
     height: auto;
-    padding: 0 2%;
+    padding: 60px 2%;
   }
   .main__main-box {
     display: flex;
     width: 100%;
+    height: 80%;
   }
   .main__events {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 2% 0 0;
+    margin: 5% 0 0;
+    height: 50%;
   }
   .main__small-box {
     display: flex;
     flex-direction: column;
-    width: 30%;
-    margin: 2% 0 0;
+    width: 31%;
+    margin: 5% 0 0;
+  }
+  .main__user-games {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #2f8e53;
+  }
+}
+/* SMARTPHONE */
+@media only screen and (min-width: 320px) and (max-width: 500px) {
+  .main__wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    padding: 60px 2%;
+  }
+  .main__main-box {
+    display: flex;
+    width: 100%;
+    height: 80%;
+  }
+  .main__events {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 5% 0 0;
+    height: 80%;
+  }
+  .main__small-box {
+    display: flex;
+    flex-direction: column;
+    width: 31%;
+    margin: 5% 0 0;
+  }
+  .main__user-games {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #2f8e53;
   }
 }
