@@ -67,6 +67,7 @@ class ViewLeague extends Component {
         </td>
         {this.state.userPool.length > 0 ? (
           <Link
+            id={this.state.leagueID}
             className="view-league-list__button"
             to="/league/events"
             onClick={() => this.startGame(this.state.leagueID)}

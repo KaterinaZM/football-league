@@ -27,36 +27,49 @@ router.post("/eventcreator", async (req, res) => {
       console.log("hello");
 
       let firstEl = foundLeague.teams[0];
-      console.log(firstEl);
 
       let secondEl = foundLeague.teams[1];
-
-      let newEvent = await new Event({
+      let newEvent = {
         name: `Game ${i}`,
         leagueName: foundLeague._id,
         date: Date.now(),
-        teams: []
-      });
+        teams: [],
+        winner: {},
+        _id: String(Math.random()).slice(2)
+      };
+      // let newEvent = await new Event({
+      //   name: `Game ${i}`,
+      //   leagueName: foundLeague._id,
+      //   date: Date.now(),
+      //   teams: []
+      // });
       newEvent.teams.push(firstEl, secondEl);
 
       foundLeague.teams.splice(0, 2);
-      await newEvent.save();
+      // await newEvent.save();
       foundLeague.events.push(newEvent);
       await foundLeague.save();
     } else {
-      console.log("elseeee");
+      console.log("1 team in event");
       let firstEl = foundLeague.teams[0];
-
-      let newEvent = await new Event({
+      let newEvent = {
         name: `Game ${i}`,
         leagueName: foundLeague._id,
         date: Date.now(),
-        teams: []
-      });
+        teams: [],
+        winner: {}
+      };
+      // let newEvent = await new Event({
+      //   name: `Game ${i}`,
+      //   leagueName: foundLeague._id,
+      //   date: Date.now(),
+      //   teams: []
+      // });
       newEvent.teams.push(firstEl);
+      newEvent.winner = firstEl;
 
       foundLeague.teams.splice(0, 1);
-      await newEvent.save();
+      // await newEvent.save();
       foundLeague.events.push(newEvent);
       await foundLeague.save();
     }

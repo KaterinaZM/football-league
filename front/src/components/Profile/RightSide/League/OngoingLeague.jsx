@@ -6,7 +6,8 @@ import "./ViewLeague.css";
 
 class OngoingLeague extends Component {
   state = {
-    events: []
+    events: [],
+    thisLeagueID: ""
   };
   async componentDidMount() {
     let currentLeagueID = this.props.propCurrLeague;
@@ -25,9 +26,12 @@ class OngoingLeague extends Component {
     let checkEventsRes = await checkEventsReq.json();
 
     console.log("checkEventsRes");
-    console.log(checkEventsRes);
+    // console.log(checkEventsRes);
     !this.state.events.length > 0 &&
-      this.setState({ events: checkEventsRes.events });
+      this.setState({
+        thisLeagueID: this.props.propCurrLeague,
+        events: checkEventsRes.events
+      });
 
     let fetchedLeagueEvents = checkEventsRes.events;
 
@@ -43,48 +47,36 @@ class OngoingLeague extends Component {
       });
       let findLeagueRes = await findLeagueReq.json();
       console.log(findLeagueRes.events);
-      this.setState({ events: findLeagueRes.events });
+      this.setState({
+        thisLeagueID: this.props.propCurrLeague,
+        events: findLeagueRes.events
+      });
     }
   }
-  // async componentDidUpdate() {
-  //   let currentLeagueID = this.props.propCurrLeague;
-  //   console.log("11111111212121212");
 
-  //   console.log(currentLeagueID);
-
-  //   let checkEventsReq = await fetch("/api/event/eventlist", {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json"
-  //     },
-  //     body: JSON.stringify({ currentLeagueID })
-  //   });
-
-  //   let checkEventsRes = await checkEventsReq.json();
-
-  //   console.log("checkEventsRes");
-  //   console.log(checkEventsRes);
-  //   !this.state.events && this.setState({ events: checkEventsRes.events });
-
-  //   let fetchedLeagueEvents = checkEventsRes.events;
-
-  //   if (fetchedLeagueEvents.length === 0) {
-  //     console.log("is zero!");
-  //     console.log(currentLeagueID);
-  //     let findLeagueReq = await fetch("/api/event/eventcreator", {
-  //       method: "POST",
-  //       headers: {
-  //         "content-type": "application/json"
-  //       },
-  //       body: JSON.stringify({ currentLeagueID })
-  //     });
-  //     let findLeagueRes = await findLeagueReq.json();
-  //     console.log(findLeagueRes.events);
-  //     this.setState({ events: findLeagueRes.events });
-  //   }
-  // }
-  async submitScore(e) {
+  async generateNew(e) {
     e.preventDefault();
+    let currentLeagueID = this.props.propCurrLeague;
+    console.log("league id in generate is ");
+    console.log(currentLeagueID);
+
+    let data = await fetch("/api/result/submit", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({
+        leagueID: currentLeagueID
+      })
+    });
+    let response = await data.json();
+    this.setState({ events: response.events });
+  }
+  async submitScore(e) {
+    // debugger;
+    e.preventDefault();
+    let currentLeagueID = this.props.propCurrLeague;
+
     let score1 = e.target.team1.value;
     let score2 = e.target.team2.value;
 
@@ -94,7 +86,11 @@ class OngoingLeague extends Component {
         headers: {
           "content-type": "application/json"
         },
-        body: JSON.stringify({ id: e.target.id, winner: 0 })
+        body: JSON.stringify({
+          leagueID: currentLeagueID,
+          eventID: e.target.id,
+          winnerInd: 0
+        })
       });
     } else {
       let winner = await fetch("/api/result", {
@@ -102,7 +98,11 @@ class OngoingLeague extends Component {
         headers: {
           "content-type": "application/json"
         },
-        body: JSON.stringify({ id: e.target.id, winner: 1 })
+        body: JSON.stringify({
+          leagueID: currentLeagueID,
+          eventID: e.target.id,
+          winnerInd: 1
+        })
       });
     }
 
@@ -116,10 +116,12 @@ class OngoingLeague extends Component {
       <>
         <ul className="view-league-list">
           {this.state.events.length > 0 ? (
-            this.state.events.map(element =>
-              element.teams.length == 2 ? (
+            this.state.events.map((element, index) => {
+              console.log(element);
+
+              return element.teams.length == 2 ? (
                 <form
-                  onSubmit={this.submitScore}
+                  onSubmit={this.submitScore.bind(this)}
                   className="events"
                   id={element._id}
                 >
@@ -132,15 +134,18 @@ class OngoingLeague extends Component {
                 </form>
               ) : (
                 <li className="view-league-list__item">
-                  {element.teams[0].title} - autowin
+                  {element.teams[0].title} - Event winner
                 </li>
-              )
-            )
+              );
+            })
           ) : (
             <h1>No events</h1>
           )}
         </ul>
-        <button className="view-league-list__button" onClick={() => {}}>
+        <button
+          className="view-league-list__button"
+          onClick={this.generateNew.bind(this)}
+        >
           Submit scores
         </button>
       </>
