@@ -6,63 +6,15 @@
 .map {
   width: 80% !important;
   height: 100% !important;
-
 }
 
-// if (props.session.user) {
-//   return (
-//     <>
-//       <Link className="menu__link" to="/">
-//         Home
-//       </Link>
-//       <Link
-//         className="menu__link"
-//         onClick={() => {
-//           logout();
-//         }}
-//       >
-//         Logout
-//       </Link>
-//       <Link className="menu__link" to="/profile">
-//         Profile
-//       </Link>
-//       <Link className="menu__link" to="/game">
-//         Game
-//       </Link>
-//     </>
-//   );
-// } else {
-//   return (
-//     <>
-//       <Link className="menu__link" to="/">
-//         Home
-//       </Link>
-//       <Link className="menu__link" to="/login">
-//         Login
-//       </Link>
-//       <Link className="menu__link" to="/registration">
-//         Registration
-//       </Link>
-//     </>
-//   );
-// }
-// }
-// // useAuthCheck(props);
-// return (
-// <Router>
-//   <div className="App">
-//     <nav className="menu">{renderNav()}</nav>
-//     <div>
-//       <Switch>
-//         <Route exact path="/login" render={props => <Login {...props} />} />
-//         <Route
-//           exact
-//           path="/registration"
-//           render={props => <Registration {...props} />}
-//         />
-//         <Route exact path="/game" render={props => <Game {...props} />} />
-//       </Switch>
-//     </div>
-//   </div>
-// </Router>
-// );
+/* SMARTPHONE */   
+@media only screen 
+    and (min-width: 320px) 
+    and (max-width: 768px) {
+ 
+      .map {
+        width: 100% !important;
+        height: 100% !important;
+      }
+}
