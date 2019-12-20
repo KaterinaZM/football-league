@@ -9,7 +9,7 @@ export default class LeftSide extends Component {
     return (
       <div className="left-side">
         <User />
-        <Menu />
+        <Menu {...this.props}/>
         <Logout {...this.props} />
       </div>
     );
