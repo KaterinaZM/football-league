@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { connect } from "react-redux";
 import "./ViewLeague.css";
 
-export default class ViewLeague extends Component {
+class ViewLeague extends Component {
   state = {
     userPool: [],
     teamPool: [],
@@ -33,7 +34,7 @@ export default class ViewLeague extends Component {
       headers: {
         "content-type": "application/json"
       },
-      body: JSON.stringify({ leagueID: id })
+      body: JSON.stringify({ leagueID: id, userID: this.props.userID })
     });
   }
 
@@ -64,8 +65,9 @@ export default class ViewLeague extends Component {
             )}
           </ul>
         </td>
-        {this.state.userPool.length > 0 && !this.state.started ? (
+        {this.state.userPool.length > 0 ? (
           <Link
+            id={this.state.leagueID}
             className="view-league-list__button"
             to="/league/events"
             onClick={() => this.startGame(this.state.leagueID)}
@@ -79,3 +81,11 @@ export default class ViewLeague extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    userID: state.login.userLogged
+  };
+}
+
+export default connect(mapStateToProps)(ViewLeague);

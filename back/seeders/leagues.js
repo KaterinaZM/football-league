@@ -27,7 +27,7 @@ async function fakeLeague() {
   console.log(">>>>>>>>>>5");
 
   let newLeague = await new League({
-    leagueName: "That one League 19.12.19",
+    leagueName: "That one test 20.12.19",
     creator: firstUser[0]._id,
     startDate: 2020,
     endDate: 2021,

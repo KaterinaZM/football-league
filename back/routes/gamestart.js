@@ -12,24 +12,19 @@ const Users = require("../models/user");
 const splitToTeams = require("../scripts/randomizers");
 
 router.post("/", async (req, res) => {
-  console.log(req.body.leagueID);
-
   let foundLeague = await League.findById(req.body.leagueID);
   foundLeague.started = true;
   splitToTeams(foundLeague.users, foundLeague.teams);
-  console.log(foundLeague);
+  console.log(req.body.leagueID);
 
-  let foundUser = await Users.findOne({ _id: foundLeague.creator });
-  console.log(foundUser);
-
+  let foundUser = await Users.findOne({ _id: req.body.userID });
   foundUser.currentLeague = req.body.leagueID;
-  await foundUser.save();
+  let savedID = await foundUser.save();
   // let news = new News({
   //   title: "League started!",
   //   msg: `${foundLeague.leagueName} has just started!`
   // });
   await foundLeague.save();
-  console.log("success!");
 
   res.send(JSON.stringify(foundLeague));
 });
