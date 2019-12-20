@@ -17,6 +17,12 @@
   align-self: center;
   color: #dedcdc;
 }
+/* SMALL SMARTPHONE */
+@media only screen and (min-width: 0px) and (max-width: 320px) {
+  .user {
+    display: none;
+  }
+}
 /* SMARTPHONE */
 @media only screen and (min-width: 320px) and (max-width: 500px) {
   .user {

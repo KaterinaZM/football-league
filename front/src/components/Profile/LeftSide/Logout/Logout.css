@@ -12,6 +12,12 @@
   width: 90%;
   align-self: center;
 }
+/* SMALL SMARTPHONE */
+@media only screen and (min-width: 0px) and (max-width: 320px) {
+  .sign-out {
+    font-size: 2rem;
+  }
+}
 /* SMARTPHONE */
 @media only screen and (min-width: 320px) and (max-width: 500px) {
   .sign-out {
