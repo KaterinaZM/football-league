@@ -8,7 +8,7 @@ const {
   randomInt
 } = require("../scripts/randomizers");
 const News = require("../models/news");
-// const sgMail = require('@sendgrid/mail');
+const sgMail = require('@sendgrid/mail');
 
 router.get("/news", async (req, res) => {
   const news = await News.find();
@@ -21,14 +21,13 @@ router.get("/leagues", async (req, res) => {
 });
 
 router.post("/newleague", async (req, res) => {
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY); SENDS EMAIL NOTIFICATION
-  // const msg = {
-  //   to: 'katerina.sobetskaia@gmail.com',
-  //   from: 'katerina.zabrovskaya@gmail.com',
-  //   subject: 'New League was created. Ready to play?',
-  //   text: 'You created a new league, lets wait for others to register for it.',
-  // };
-  // console.log(msg);
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  const msg = {
+    to: 'katerina.sobetskaia@gmail.com',
+    from: 'katerina.zabrovskaya@gmail.com',
+    subject: 'New League was created. Ready to play?',
+    text: 'You created a new league, lets wait for others to register for it.',
+  };
 
   let newLeague = await new League({
     leagueName: req.body.leagueName,
@@ -55,7 +54,7 @@ router.post("/newleague", async (req, res) => {
   // console.log(newLeague._id);
 
   res.send(JSON.stringify(newLeague._id));
-  // sgMail.send(msg);
+  sgMail.send(msg);
 });
 
 router.post("/leagues/:id", async (req, res) => {
