@@ -125,6 +125,48 @@
   }
 }
 
+/* SMALL SMARTPHONE */   
+@media only screen 
+    and (min-width: 0px) 
+    and (max-width: 320px) {
+ 
+ 
+      .main {
+
+        &__wrapper {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          width: 100%;
+          height: auto;
+          padding:60px 2%;
+
+        }
+
+        &__main-box {
+          display: flex;
+          width: 100%;
+          height: 80%;
+        }
+
+        &__events {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          margin: 5% 0 0;
+          height: 50%;
+        }
+
+        &__small-box {
+          display: flex;
+          flex-direction: column;
+          width: 31%;
+          margin: 5% 0 0;
+        }
+
+      }
+}
+
 /* SMARTPHONE */   
 @media only screen 
     and (min-width: 320px) 

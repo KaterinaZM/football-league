@@ -10,6 +10,18 @@
   -khtml-user-select: none;
   user-select: none;
 }
+/* SMALL SMARTPHONE */
+@media only screen and (min-width: 0px) and (max-width: 320px) {
+  .left-side {
+    display: flex;
+    flex-direction: column;
+    background-color: #202123;
+    color: #dedcdc;
+    width: 0%;
+    height: 0%;
+    padding: 0%;
+  }
+}
 /* SMARTPHONE */
 @media only screen and (min-width: 320px) and (max-width: 500px) {
   .left-side {

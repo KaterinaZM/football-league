@@ -158,6 +158,42 @@
   text-decoration: none;
   transition: color 0.4s ease;
 }
+/* SMALL SMARTPHONE */
+@media only screen and (min-width: 0px) and (max-width: 320px) {
+  .profile-menu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0;
+    padding: 0 5% 0%;
+    height: 0;
+  }
+  .profile-menu__list {
+    display: none;
+  }
+  .profile-menu__title {
+    display: none;
+  }
+  .profile-menu__title-hamburger {
+    padding: 0 0 2% 2%;
+    border-bottom: 2px solid #2f8e53;
+    font-size: 2rem;
+  }
+  .profile-menu__item {
+    margin: 1% 0;
+  }
+  .profile-menu__item:first-child {
+    margin-top: 1%;
+  }
+  .profile-menu__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .menu-wrap {
+    display: block;
+  }
+}
 /* SMARTPHONE */
 @media only screen and (min-width: 320px) and (max-width: 500px) {
   .profile-menu {
