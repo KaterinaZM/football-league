@@ -36,7 +36,7 @@ class Main extends Component {
           <ul className="main__events-body">
             {leagues.map(element =>
               element.events.map(event => (
-                <li className="main__events-item">{event.date}</li>
+                <li className="main__events-item">{event.name} : {event.date}</li>
               ))
             )}
           </ul>
