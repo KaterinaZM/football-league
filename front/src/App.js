@@ -6,7 +6,6 @@ import {
   Redirect
 } from "react-router-dom";
 import { connect } from "react-redux";
-import { userInfo } from "os";
 import Profile from "./components/Profile/Profile";
 import SignInUp from "./components/SignInUp/SignInUp";
 import { loginUserAC } from "./redux/actions/actions";
@@ -29,28 +28,19 @@ class App extends Component {
       });
       const getProfileRes = await getProfile.json();
 
-      // if (!response.validationError) {
       this.props.loginCheck(result, getProfileRes);
 
-      // } else {
-      //   alert("Something went wrong!");
-      // }
     } else {
-      //alert('eroroljkfdvjlkv')
-      //this.props.userLogged = false
       this.props.loginCheck(false, false);
-      console.log(this.props);
     }
   }
 
   render() {
     const userLogged = this.props.userLogged;
-    console.log("User logged " + userLogged);
 
     if (userLogged === "") {
       return <h1>Please, wait</h1>;
     } else {
-      console.log("userLogges:" + typeof userLogged);
       return (
         <Router>
           <div className="App">

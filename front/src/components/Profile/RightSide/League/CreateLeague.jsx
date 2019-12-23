@@ -26,7 +26,6 @@ class CreateLeague extends Component {
   };
 
   render() {
-    console.log(this.props);
 
     return (
         <form name="createLeague" onSubmit={this.onSubmit}>

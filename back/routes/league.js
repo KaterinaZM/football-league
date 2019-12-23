@@ -21,14 +21,6 @@ router.get("/leagues", async (req, res) => {
 });
 
 router.post("/newleague", async (req, res) => {
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY); SENDS EMAIL NOTIFICATION
-  // const msg = {
-  //   to: 'katerina.sobetskaia@gmail.com',
-  //   from: 'katerina.zabrovskaya@gmail.com',
-  //   subject: 'New League was created. Ready to play?',
-  //   text: 'You created a new league, lets wait for others to register for it.',
-  // };
-  // console.log(msg);
 
   let newLeague = await new League({
     leagueName: req.body.leagueName,
@@ -50,12 +42,8 @@ router.post("/newleague", async (req, res) => {
   let creatorUser = await Users.findById(req.body.creator);
   creatorUser.leagues.push(newLeague);
   await creatorUser.save();
-  console.log(creatorUser.leagues);
-
-  // console.log(newLeague._id);
 
   res.send(JSON.stringify(newLeague._id));
-  // sgMail.send(msg);
 });
 
 router.post("/leagues/:id", async (req, res) => {

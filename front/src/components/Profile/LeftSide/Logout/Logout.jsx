@@ -5,7 +5,6 @@ import './Logout.css';
 
 class Logout extends Component {
     logoutFetch = async (e) => {
-      console.log(this.props);
       e.preventDefault();
       try {
         await this.props.fetchToLogout();
@@ -14,7 +13,6 @@ class Logout extends Component {
       } catch (e) {
         console.error(e);
       }
-      // window.location.replace('/')      \\\\\
     }
 
     render() {

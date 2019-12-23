@@ -15,7 +15,6 @@ router.post("/", async (req, res) => {
   let foundLeague = await League.findById(req.body.leagueID);
   foundLeague.started = true;
   splitToTeams(foundLeague.users, foundLeague.teams);
-  console.log(req.body.leagueID);
 
   let foundUser = await Users.findOne({ _id: req.body.userID });
   foundUser.currentLeague = req.body.leagueID;

@@ -7,7 +7,7 @@ router.post("/", async (req, res) => {
   if (req.body.username) {
     let currentUser = await User.getUserByName(req.body.username);
     if (currentUser !== null) {
-      bcrypt.compare(req.body.password, currentUser.password, function (
+      bcrypt.compare(req.body.password, currentUser.password, function(
         err,
         result
       ) {
@@ -18,13 +18,10 @@ router.post("/", async (req, res) => {
         } else res.json(false);
       });
     } else {
-      console.log("kapez");
-      res.json({ error: "dkfdfg" })
+      res.json({ error: "dkfdfg" });
     }
   } else {
-    console.log("kapez");
-
-    res.json({ error: "dkfdfg" })
+    res.json({ error: "dkfdfg" });
   }
 });
 router.get("/", (req, res) => {
@@ -35,8 +32,7 @@ router.get("/", (req, res) => {
       res.json(false);
     }
   } catch (e) {
-    console.log('>>>>>>', e);
-
+    console.log(e);
   }
 });
 

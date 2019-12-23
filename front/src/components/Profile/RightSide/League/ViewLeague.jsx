@@ -41,30 +41,26 @@ class ViewLeague extends Component {
   render() {
     return (
       <>
-        <td>
-          <h2 className="view-league-list">Users</h2>
-          <ul className="view-league-list">
-            {this.state.userPool.length > 0 ? (
-              this.state.userPool.map(element => (
-                <li className="view-league-list__item">{element.username}</li>
-              ))
-            ) : (
-              <li>No players yet :(</li>
-            )}
-          </ul>
-        </td>
-        <td>
-          <h2 className="view-league-list">Teams</h2>
-          <ul className="view-league-list">
-            {this.state.teamPool.length > 0 ? (
-              this.state.teamPool.map(element => (
-                <li className="view-league-list__item"> {element.title} </li>
-              ))
-            ) : (
-              <li>No teams yet :(</li>
-            )}
-          </ul>
-        </td>
+        <h2 className="view-league-list">Users</h2>
+        <ul className="view-league-list">
+          {this.state.userPool.length > 0 ? (
+            this.state.userPool.map(element => (
+              <li className="view-league-list__item">{element.username}</li>
+            ))
+          ) : (
+            <li>No players yet :(</li>
+          )}
+        </ul>
+        <h2 className="view-league-list">Teams</h2>
+        <ul className="view-league-list">
+          {this.state.teamPool.length > 0 ? (
+            this.state.teamPool.map(element => (
+              <li className="view-league-list__item"> {element.title} </li>
+            ))
+          ) : (
+            <li>No teams yet :(</li>
+          )}
+        </ul>
         {this.state.userPool.length > 0 ? (
           <Link
             id={this.state.leagueID}

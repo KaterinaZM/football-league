@@ -29,8 +29,6 @@ class League extends Component {
       body: JSON.stringify({ userID, userName, leagueName })
     })
     const response = await data.json();
-    console.log(response);
-    console.log(typeof (currentButton.parentNode.getElementsByClassName('league-list__item-users')[0].innerText));
 
     if (response) {
       currentButton.style.visibility = "hidden";
@@ -46,18 +44,6 @@ class League extends Component {
     this.setState({ leagues: data });
   }
 
-  // async startGame(id) {
-  //   console.log(id);
-  //   console.log(this.props.userID);
-
-  //   const sendID = await fetch('../api/currentleague', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify({ leagueID: id, userID: this.props.userID })
-  //   });
-  // }
 
   render() {
     let options = {

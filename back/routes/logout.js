@@ -9,14 +9,10 @@ const router = express.Router();
 // })
 
 router.get("/", async (req, res, next) => {
-    console.log(req.session);
 
     if (req.session.name) {
-        console.log('logout');
         try {
-            console.log("in try");
             await req.session.destroy();
-            console.log(req.session);
             res.clearCookie("user_sid");
             res.json({
                 success: true

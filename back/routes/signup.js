@@ -31,7 +31,6 @@ router.post('/', async (req, res) => {
             })
 
             await user.save()
-            console.log(user)
             res.send({ user })
         });
     }

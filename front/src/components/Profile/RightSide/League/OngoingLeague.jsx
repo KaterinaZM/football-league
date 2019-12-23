@@ -11,9 +11,7 @@ class OngoingLeague extends Component {
   };
   async componentDidMount() {
     let currentLeagueID = this.props.propCurrLeague;
-    console.log("11111111212121212");
 
-    console.log(currentLeagueID);
 
     let checkEventsReq = await fetch("/api/event/eventlist", {
       method: "POST",
@@ -25,8 +23,6 @@ class OngoingLeague extends Component {
 
     let checkEventsRes = await checkEventsReq.json();
 
-    console.log("checkEventsRes");
-    // console.log(checkEventsRes);
     !this.state.events.length > 0 &&
       this.setState({
         thisLeagueID: this.props.propCurrLeague,
@@ -36,8 +32,6 @@ class OngoingLeague extends Component {
     let fetchedLeagueEvents = checkEventsRes.events;
 
     if (fetchedLeagueEvents.length === 0) {
-      console.log("is zero!");
-      console.log(currentLeagueID);
       let findLeagueReq = await fetch("/api/event/eventcreator", {
         method: "POST",
         headers: {
@@ -46,7 +40,6 @@ class OngoingLeague extends Component {
         body: JSON.stringify({ currentLeagueID })
       });
       let findLeagueRes = await findLeagueReq.json();
-      console.log(findLeagueRes.events);
       this.setState({
         thisLeagueID: this.props.propCurrLeague,
         events: findLeagueRes.events
@@ -57,8 +50,6 @@ class OngoingLeague extends Component {
   async generateNew(e) {
     e.preventDefault();
     let currentLeagueID = this.props.propCurrLeague;
-    console.log("league id in generate is ");
-    console.log(currentLeagueID);
 
     let data = await fetch("/api/result/submit", {
       method: "POST",
@@ -105,10 +96,6 @@ class OngoingLeague extends Component {
         })
       });
     }
-
-    // let await fetch()
-    console.log(score1);
-    console.log(score2);
   }
 
   render() {
@@ -117,7 +104,6 @@ class OngoingLeague extends Component {
         <ul className="view-league-list">
           {this.state.events.length > 0 ? (
             this.state.events.map((element, index) => {
-              console.log(element);
 
               return element.teams.length == 2 ? (
                 <form

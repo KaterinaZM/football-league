@@ -14,8 +14,6 @@ export const loginUserAC = (userLoggedIn, profileInfo) => ({
 
 export const FetchToLoginAC = (username, password) => async dispatch => {
   try {
-    // console.log("Fetch to Login");
-
     const userLoggedData = await fetch("/api/login", {
       method: "POST",
       headers: {
@@ -29,7 +27,6 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
     const userLoggedIn = await userLoggedData.json();
 
     // Максим: ниже добавил доп. фетч для запроса инфы по профилю
-    // console.log("actioncreator");
 
     const getProfile = await fetch("/api/profileinfo", {
       method: "POST",
@@ -39,17 +36,13 @@ export const FetchToLoginAC = (username, password) => async dispatch => {
       body: JSON.stringify({ userID: userLoggedIn })
     });
     const getProfileRes = await getProfile.json();
-    // console.log("userLoggedIn");
-    // console.log(userLoggedIn);
     if (userLoggedIn.error) {
-      // console.log("user logges error");
       alert("Login or password is invalid");
     } else {
       dispatch(loginUserAC(userLoggedIn, getProfileRes));
     }
   } catch (err) {
     dispatch(loginUserAC(false, false));
-    // alert(err);
   }
 };
 export const FetchToLogoutAC = () => async dispatch => {
@@ -86,7 +79,6 @@ export const FetchToSignUpAC = (
 
     if (response.status === 200) {
       const responseJSON = await response.json();
-      // console.log(responseJSON);
 
       if (responseJSON.errorName) {
         document.getElementById("errorName").innerText = responseJSON.errorName;
@@ -100,11 +92,10 @@ export const FetchToSignUpAC = (
         document.getElementById("email").style.borderColor = "red";
         document.getElementById("errorName").innerText = "";
       } else if (responseJSON.successMessage) {
-        console.log(username, password);
         await dispatch(FetchToLoginAC(username, password));
       }
     }
   } catch (err) {
-    //alert(err);
+    alert(err);
   }
 };
