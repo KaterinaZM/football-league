@@ -30,3 +30,6 @@
 * [Михаил](https://github.com/mamboojamboo)
 * [Максим](https://github.com/chexovm)
 
+Дополнительно
+------------
+Код написан в соответствии с [AirBnB JavaScript Style Guide](https://airbnb.io/projects/javascript/)
