@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "connect-mongo": "^3.2.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
