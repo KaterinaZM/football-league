@@ -7,9 +7,10 @@ function randomInt(min, max) {
 }
 
 mongoose.Promise = global.Promise;
-require("dotenv").config();
+require("dotenv").config({ path: '../.env' });
+
 mongoose.connect(
-  "mongodb+srv://SkaterinaM:Project2019!@cluster0-l6msd.mongodb.net/footballleague?retryWrites=true&w=majority",
+  process.env.ATLAS_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -20,8 +21,7 @@ async function fakeUsers() {
   for (let i = 0; i < 30; i++) {
     const randomName = faker.fake("{{internet.userName}}");
     const randomEmail = faker.fake("{{internet.email}}");
-
-    let user = await new User({
+    await new User({
       username: randomName,
       email: randomEmail,
       password: 123,

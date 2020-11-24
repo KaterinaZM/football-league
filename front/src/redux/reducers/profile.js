@@ -1,8 +1,21 @@
-import { GET_USER_DETAILS } from "../actions/actionTypes";
+import { GET_USER_DETAILS } from '../actions/actionTypes';
+
 const initialState = {
   user: {},
   events: []
 };
+
+export default function rootReducer(state = initialState, action) {
+  switch (action.type) {
+    case GET_USER_DETAILS:
+      return {
+        ...state,
+        imgUrl: action.url
+      };
+    default:
+      return state;
+  }
+}
 
 // const initialState = {
 //   user: {
@@ -86,16 +99,4 @@ const initialState = {
 //       date: '18.12.2019'
 //     }
 //   ]
-//   }
-
-export default function rootReducer(state = initialState, action) {
-  switch (action.type) {
-    case GET_USER_DETAILS:
-      return {
-        ...state,
-        imgUrl: action.url
-      };
-    default:
-      return state;
-  }
-}
+// }

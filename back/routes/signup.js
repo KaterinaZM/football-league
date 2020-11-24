@@ -3,8 +3,6 @@ const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 
-const saltRounds = 10;
-
 router.post('/', async (req, res) => {
 
     let username = req.body.username
@@ -23,7 +21,7 @@ router.post('/', async (req, res) => {
     
     } else {
     
-        bcrypt.hash(req.body.password, saltRounds, async function (err, hash) {
+        bcrypt.hash(req.body.password, 10, async function (err, hash) {
             const user = await new User ({
             username: req.body.username,
             email: req.body.email,

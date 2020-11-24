@@ -7,7 +7,7 @@ const logger = require("morgan");
 const methodOverride = require("method-override");
 const MongoStore = require("connect-mongo")(session);
 
-const indexRouter = require("./routes/index");
+// Routers
 const gamestartRouter = require("./routes/gamestart");
 const loginRouter = require("./routes/login");
 const signUpRouter = require("./routes/signup");
@@ -15,7 +15,7 @@ const leagueRouter = require("./routes/league");
 const logoutRouter = require("./routes/logout");
 const profileinfoRouter = require("./routes/profileinfo");
 const currentleagueRouter = require("./routes/currentleague");
-currentleagueRouter
+
 const app = express();
 
 // Подключаем mongoose.
@@ -23,10 +23,8 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 // задать имя базы монго
-// mongoose.connect(process.env.ATLAS_URL, {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// });
+
+
 mongoose.Promise = global.Promise;
 const db = mongoose.connection;
 mongoose.connect(process.env.ATLAS_URL, {
@@ -43,7 +41,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000,
+      expires: 99999999,
     }
   })
 );
@@ -80,13 +78,14 @@ app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true");
   next();
 });
-app.use("/", indexRouter);
-app.use("/", gamestartRouter);
+
+// routes
 app.use("/api", leagueRouter);
-app.use("/api/currentleague", currentleagueRouter);
 app.use("/api/login", loginRouter);
 app.use("/api/signup", signUpRouter);
-app.use("/api/profileinfo", profileinfoRouter);
+app.use("/api/gamestart", gamestartRouter);
+app.use("/api/currentleague", currentleagueRouter);
+app.use("/api/profileinfo", profileinfoRouter); //commented for now - attempting to merge with api/login
 app.use("/api/logout", logoutRouter);
 
 // catch 404 and forward to error handler

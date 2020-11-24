@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import defaultUserImage from "./defaultUserImage.jpg";
-import "./User.css";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import defaultUserImage from './defaultUserImage.jpg';
+import './User.css';
 
 class User extends Component {
   render() {

@@ -1,8 +1,7 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import "./ViewLeague.css";
+import './ViewLeague.css';
 
 class OngoingLeague extends Component {
   async componentDidMount() {
@@ -13,7 +12,7 @@ class OngoingLeague extends Component {
     return (
       <>
         <ul className="view-league-list">
-          {this.state.userPool.map(element => (
+          {this.state.userPool.map((element) => (
             <li className="view-league-list__item"> {element.username} </li>
           ))}
         </ul>

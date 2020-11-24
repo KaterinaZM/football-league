@@ -3,26 +3,26 @@ import { connect } from 'react-redux';
 import { FetchToLogoutAC } from '../../../../redux/actions/actions';
 import './Logout.css';
 
+/* eslint no-console: 'off' */
+
 class Logout extends Component {
-    logoutFetch = async (e) => {
-      console.log(this.props);
-      e.preventDefault();
-      try {
-        await this.props.fetchToLogout();
-
-        this.props.history.push('/');
-      } catch (e) {
-        console.error(e);
-      }
-      // window.location.replace('/')      \\\\\
+  logoutFetch = async (e) => {
+    e.preventDefault();
+    try {
+      await this.props.fetchToLogout();
+      this.props.history.push('/');
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    render() {
-      return (
-            <button className="sign-out" onClick={this.logoutFetch.bind(this)}>Sign Out</button>
-      );
-    }
+  render() {
+    return (
+      <button className='sign-out' onClick={this.logoutFetch.bind(this)}>Sign Out</button>
+    );
+  }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     fetchToLogout: async () => {

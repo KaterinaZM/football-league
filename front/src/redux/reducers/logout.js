@@ -1,15 +1,17 @@
-import { LOGOUT_USER } from "../actions/actionTypes";
+import { LOGOUT_USER } from '../actions/actionTypes';
+
 const inititialState = {
-    userLogged: ""
-}
-export default function (state = inititialState, action) {
-    switch (action.type) {
-        case LOGOUT_USER: {
-            return {
-                ...state,
-                userLogged: false
-            }
-        }
+  userLogged: true
+};
+
+export default function logout(state = inititialState, action) {
+  switch (action.type) {
+    case LOGOUT_USER: {
+      return {
+        ...state,
+        userLogged: false
+      };
     }
-    return state
+    default: return state;
+  }
 }

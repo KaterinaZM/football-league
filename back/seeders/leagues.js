@@ -8,9 +8,10 @@ function randomInt(min, max) {
 }
 
 mongoose.Promise = global.Promise;
-require("dotenv").config();
+require("dotenv").config({ path: '../.env' });
+
 mongoose.connect(
-  "mongodb+srv://SkaterinaM:Project2019!@cluster0-l6msd.mongodb.net/footballleague?retryWrites=true&w=majority",
+  process.env.ATLAS_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -23,14 +24,12 @@ async function fakeLeague() {
   firstUser.map(el => {
     newArr.push({ username: el.username, _id: el._id });
   });
-  console.log(newArr);
-  console.log(">>>>>>>>>>5");
 
-  let newLeague = await new League({
-    leagueName: "That one League 19.12.19",
+  await new League({
+    leagueName: "League 2021-2022",
     creator: firstUser[0]._id,
-    startDate: 2020,
-    endDate: 2021,
+    startDate: 2021,
+    endDate: 2022,
     usersHistory: [...newArr],
     users: [...newArr],
     teams: [],

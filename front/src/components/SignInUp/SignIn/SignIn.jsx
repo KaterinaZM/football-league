@@ -22,10 +22,8 @@ class Login extends Component {
     const userName = this.state.username;
     const userPassword = this.state.password;
     await this.props.fetchToLogin(userName, userPassword);
-    //window.location.replace('/profile')
-    console.log(this.props);
-
-    this.props.history.push('/profile')
+    this.props.history.push('/profile');
+    window.location.reload();
   }
 
   render() {
@@ -33,10 +31,10 @@ class Login extends Component {
       <form className='login'>
 
         <label className='login__user-name-label'>Login</label>
-        <input className='login__user-name-input' onChange={this.handleChangeUsername} type="text" placeholder='login' requiredTxt />
+        <input className='login__user-name-input' onChange={this.handleChangeUsername} type="text" placeholder='login' />
 
         <label className='login__password-label'>Password</label>
-        <input className='login__password-input' onChange={this.handleChangePassword} type="password" placeholder='password' requiredTxt />
+        <input className='login__password-input' onChange={this.handleChangePassword} type="password" placeholder='password' />
 
         <button className='login__button' onClick={this.preFetchLogin}>Sign In</button>
       </form>

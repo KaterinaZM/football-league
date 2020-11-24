@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './CreateLeague.css';
-import { timingSafeEqual } from 'crypto';
 
 class CreateLeague extends Component {
   onSubmit = async (event) => {
@@ -26,22 +25,20 @@ class CreateLeague extends Component {
   };
 
   render() {
-    console.log(this.props);
-
     return (
-        <form name="createLeague" onSubmit={this.onSubmit}>
-          <label>Create New League</label>
+      <form name="createLeague" onSubmit={this.onSubmit}>
+        <label>Create New League</label>
 
-          <label>Your League name </label>
-          <input name="leagueName" type="text" required />
-          
-          <label>Start date: </label>
-          <input name="startDate" type="datetime-local" required />
+        <label>Your League name </label>
+        <input name="leagueName" type="text" required />
 
-          <label>End date: </label>
-          <input name="endDate" type="datetime-local" required />
-          <button >Create</button>
-        </form>
+        <label>Start date: </label>
+        <input name="startDate" type="datetime-local" required />
+
+        <label>End date: </label>
+        <input name="endDate" type="datetime-local" required />
+        <button >Create</button>
+      </form>
     );
   }
 }

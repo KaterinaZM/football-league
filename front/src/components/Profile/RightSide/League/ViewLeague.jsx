@@ -1,26 +1,29 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import "./ViewLeague.css";
+import React, { Component } from 'react';
+import {
+  BrowserRouter as Link
+} from 'react-router-dom';
+import './ViewLeague.css';
+
+/* eslint no-underscore-dangle: 0 */
 
 export default class ViewLeague extends Component {
   state = {
     userPool: [],
     teamPool: [],
-    leagueID: "",
+    leagueID: '',
     started: false
   };
 
   async componentDidMount() {
     const { id } = this.props.match.params;
     const response = await fetch(`/api/leagues/${id}`, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "content-type": "application/json"
+        'content-type': 'application/json'
       },
       body: JSON.stringify({ id })
     });
     const data = await response.json();
-    console.log(data);
     this.setState({
       userPool: data.usersHistory,
       teamPool: data.teams,
@@ -28,11 +31,12 @@ export default class ViewLeague extends Component {
       leagueID: data._id
     });
   }
+
   async startGame(id) {
-    let request = await fetch("/api/gamestart", {
-      method: "GET",
+    await fetch('/api/gamestart', {
+      method: 'GET',
       headers: {
-        "content-type": "application/json"
+        'content-type': 'application/json'
       },
       body: JSON.stringify({ id })
     });
@@ -46,24 +50,22 @@ export default class ViewLeague extends Component {
             <h2 className="view-league-list">Users</h2>
             <ul className="view-league-list">
               {this.state.userPool.length > 0 ? (
-                this.state.userPool.map(element => (
+                this.state.userPool.map((element) => (
                   <li className="view-league-list__item">{element.username}</li>
                 ))
               ) : (
-                <li>No players yet :(</li>
-              )}
+                  <li>No players yet :(</li>)}
             </ul>
           </td>
           <td>
             <h2 className="view-league-list">Teams</h2>
             <ul className="view-league-list">
               {this.state.teamPool.length > 0 ? (
-                this.state.teamPool.map(element => (
+                this.state.teamPool.map((element) => (
                   <li className="view-league-list__item"> {element.title} </li>
                 ))
               ) : (
-                <li>No teams yet :(</li>
-              )}
+                  <li>No teams yet :(</li>)}
             </ul>
           </td>
         </tr>
@@ -76,8 +78,7 @@ export default class ViewLeague extends Component {
             Start!
           </Link>
         ) : (
-          <br></br>
-        )}
+            <br></br>)}
       </>
     );
   }

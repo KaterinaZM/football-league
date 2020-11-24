@@ -1,82 +1,63 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
   Switch,
   Redirect
-} from "react-router-dom";
-import { connect } from "react-redux";
-import { userInfo } from "os";
-import Profile from "./components/Profile/Profile";
-import SignInUp from "./components/SignInUp/SignInUp";
-import { loginUserAC } from "./redux/actions/actions";
-import "./App.css";
+} from 'react-router-dom';
+import { connect } from 'react-redux';
+import Profile from './components/Profile/Profile';
+import SignInUp from './components/SignInUp/SignInUp';
+import { loginUserAC } from './redux/actions/actions';
+import './App.css';
 
 class App extends Component {
   async componentDidMount() {
-    const response = await fetch("/api/login", {
-      credentials: "include"
+    // checks if user is logged in by checking if there are any existing sessions
+    const response = await fetch('/api/login', {
+      credentials: 'include'
     });
+    const result = await response.json();
+    console.log(result, '<<<<<<<<<<<<<<<< get req to api/login result');
 
-    let result = await response.json();
     if (result) {
-      const getProfile = await fetch("api/profileinfo", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ userID: result })
-      });
-      const getProfileRes = await getProfile.json();
-
-      // if (!response.validationError) {
-      this.props.loginCheck(result, getProfileRes);
-
-      // } else {
-      //   alert("Something went wrong!");
-      // }
+      this.props.loginCheck(result.id, result);
     } else {
-      //alert('eroroljkfdvjlkv')
-      //this.props.userLogged = false
       this.props.loginCheck(false, false);
-      console.log(this.props);
     }
   }
 
   render() {
-    const userLogged = this.props.userLogged;
-    console.log("User logged " + userLogged);
 
-    if (userLogged === "") {
+    const { userInfo } = this.props;
+    if (userInfo === '') {
       return <h1>Please, wait</h1>;
-    } else {
-      console.log("userLogges:" + typeof userLogged);
-      return (
-        <Router>
-          <div className="App">
-            <Switch>
-              <Route exact path="/">
-                {userLogged ? (
-                  <Redirect to="/profile" />
-                ) : (
-                  <Redirect to="/signin" />
-                )}
-              </Route>
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/profile/calendar" component={Profile} />
-              <Route exact path="/signup" component={SignInUp} />
-              <Route exact path="/signin" component={SignInUp} />
-              <Route exact path="/profile/leagues" component={Profile} />
-              <Route exact path="/profile/playgrounds" component={Profile} />
-              <Route exact path="/leagues/:id" component={Profile} />
-              <Route exact path="/league/events" component={Profile} />
-            </Switch>
-          </div>
-        </Router>
-      );
     }
+    return (
+      <BrowserRouter>
+        <div className='App'>
+          <Switch>
+            <Route exact path='/'>
+              {userInfo ? (
+                <Redirect to='/profile' />
+              ) : (<Redirect to='/signin' />)}
+            </Route>
+
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/signin' component={SignInUp} />
+            <Route exact path='/profile/calendar' component={Profile} />
+            <Route exact path='/signup' component={SignInUp} />
+            <Route exact path='/profile/leagues' component={Profile} />
+            <Route exact path='/profile/playgrounds' component={Profile} />
+            <Route exact path='/leagues/:id' component={Profile} />
+            <Route exact path='/league/events' component={Profile} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    );
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     loginCheck: (result, profileInfo) => {
@@ -86,7 +67,7 @@ function mapDispatchToProps(dispatch) {
 }
 function mapStateToProps(state) {
   return {
-    userLogged: state.userLogged
+    userInfo: state.userInfo
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(App);

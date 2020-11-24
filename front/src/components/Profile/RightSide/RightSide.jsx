@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { connect } from "react-redux";
-import Main from "./Main/Main";
-import League from "./League/League";
-import CreateLeague from "./League/CreateLeague";
-import Playgrounds from "./Playgrounds/Playgrounds";
-import ViewLeague from "./League/ViewLeague";
-import OngoingLeague from "./League/OngoingLeague";
-import "./RightSide.css";
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import Main from './Main/Main';
+import League from './League/League';
+import CreateLeague from './League/CreateLeague';
+import Playgrounds from './Playgrounds/Playgrounds';
+import ViewLeague from './League/ViewLeague';
+import OngoingLeague from './League/OngoingLeague';
+import './RightSide.css';
 
 class RightSide extends Component {
   render() {
+    console.log('RightSide component loaded'); // <========================================
     return (
       <div className="right-side">
         <Route exact path="/profile" component={Main} />

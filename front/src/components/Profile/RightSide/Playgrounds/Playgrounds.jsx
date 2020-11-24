@@ -4,7 +4,6 @@ import {
 } from 'google-maps-react';
 import './Playgrounds.css';
 
-
 class MapContainer extends Component {
   state = {
 
@@ -95,7 +94,7 @@ class MapContainer extends Component {
 
   }
 
-  onMarkerClick = (props, marker, e) => this.setState({
+  onMarkerClick = (props, marker) => this.setState({
     selectedPlace: props,
     activeMarker: marker,
     showingInfoWindow: true

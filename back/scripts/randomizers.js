@@ -1,4 +1,3 @@
-const Teams = require("../models/team");
 const faker = require("faker");
 
 function randomInt(min, max) {
@@ -43,14 +42,5 @@ function splitToTeams(users, teams) {
     teams.push(team);
   }
 }
-
-//testing area
-
-// let testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-// let outputArr = [];
-
-// splitToTeams(testArr, outputArr);
-// console.log(testArr);
-// console.log(outputArr);
 
 module.exports = { splitToTeams, randomPair, randomInt };
