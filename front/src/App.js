@@ -19,7 +19,6 @@ class App extends Component {
     });
     const result = await response.json();
     console.log(result, '<<<<<<<<<<<<<<<< get req to api/login result');
-
     if (result) {
       this.props.loginCheck(result.id, result);
     } else {

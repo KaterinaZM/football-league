@@ -3,8 +3,8 @@ const router = express.Router();
 const User = require("../models/user");
 
 router.get("/", async (req, res) => {
-    try {
-        console.log(req.session);
+    if (req.session.name) {
+        console.log(req.session, '<<<<<< profileinfo.js line 8');
         let currentUser = await User.findById(req.session.name);
         console.log(currentUser);
         res.send({
@@ -13,8 +13,8 @@ router.get("/", async (req, res) => {
             leagues: currentUser.leagues,
             stats: currentUser.stats
         });
-    } catch (e) {
-        console.error(e);
+    } else {
+        res.send(false)
     }
 });
 
