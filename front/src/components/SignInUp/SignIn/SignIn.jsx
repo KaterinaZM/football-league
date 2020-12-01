@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { FetchToLoginAC } from '../../../redux/actions/actions';
 import './SignIn.css';
 
@@ -22,11 +23,13 @@ class Login extends Component {
     const userName = this.state.username;
     const userPassword = this.state.password;
     await this.props.fetchToLogin(userName, userPassword);
-    this.props.history.push('/profile');
-    window.location.reload();
+    this.props.history.push('/');
+    return <Redirect to='../' />
+    // window.location.reload();
   }
 
   render() {
+    console.log('<<<<<<<<<<<<<<<< Login component has loaded');
     return (
       <form className='login'>
 

@@ -8,6 +8,7 @@ import './SignInUp.css';
 
 export default class SignInUp extends Component {
   render() {
+    console.log('<<<<<<<<<<<<<<<<<<< SignInUp component loaded');
     return (
       <Router>
         <div className="sign-in-up">

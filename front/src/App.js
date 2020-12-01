@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Profile from './components/Profile/Profile';
+import SignIn from './components/SignInUp/SignIn/SignIn';
 import SignInUp from './components/SignInUp/SignInUp';
 import { loginUserAC } from './redux/actions/actions';
 import './App.css';
@@ -18,26 +19,20 @@ class App extends Component {
       credentials: 'include'
     });
     const result = await response.json();
-    console.log(result, '<<<<<<<<<<<<<<<< get req to api/login result');
     if (result) {
-      this.props.loginCheck(result.id, result);
-    } else {
-      this.props.loginCheck(false, false);
+      console.log(result, '<<<<<<<<<<<<<<<< get req to api/login result');
+      this.props.loginCheck(true, result);
     }
   }
 
   render() {
-
-    const { userInfo } = this.props;
-    if (userInfo === '') {
-      return <h1>Please, wait</h1>;
-    }
+    console.log(this.props, 'logging the render console log line 34');
     return (
       <BrowserRouter>
         <div className='App'>
           <Switch>
             <Route exact path='/'>
-              {userInfo ? (
+              {this.props === true ? (
                 <Redirect to='/profile' />
               ) : (<Redirect to='/signin' />)}
             </Route>

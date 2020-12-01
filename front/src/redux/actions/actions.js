@@ -28,18 +28,19 @@ export const FetchToLoginAC = (username, password) => async (dispatch) => {
     console.log(userLoggedIn);
 
     // Максим: ниже добавил доп. фетч для запроса инфы по профилю
-    const getProfile = await fetch('api/profileinfo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ userID: userLoggedIn })
-    });
-    const getProfileRes = await getProfile.json();
+    // const getProfile = await fetch('api/profileinfo', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ userID: userLoggedIn })
+    // });
+
+    // const getProfileRes = await getProfile.json();
     if (userLoggedIn.error) {
       alert('Login or password is invalid'); // eslint-disable-line no-alert
     } else {
-      dispatch(loginUserAC(userLoggedIn, getProfileRes));
+      dispatch(loginUserAC(true, userLoggedIn));
     }
   } catch (err) {
     dispatch(loginUserAC(false, false));
